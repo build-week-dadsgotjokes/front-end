@@ -5,7 +5,6 @@ const AddJoke = props => {
 	const [addJoke, setAddJoke] = useState({});
 	const [setupValue, setSetupValue] = useState("");
 	const [punchlineValue, setPunchlineValue] = useState("");
-	const [placeholderId, setPlaceholderId] = useState("");
 
 	const handleChange = effect => {
 		setAddJoke({
