@@ -38,7 +38,7 @@ const AddJoke = props => {
 				type="text"
 				name="punchline"
 				placeholder="Punchline"
-				value={SetupValue}
+				value={setupValue}
 				onChange={handleChange}
 			/>
 			<input
