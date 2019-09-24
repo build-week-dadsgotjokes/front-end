@@ -1,7 +1,7 @@
 import React from "react";
 
 const Profile = () => {
-  return <div>hello world</div>;
+  return <div>hello user!</div>;
 };
 
 export default Profile;
