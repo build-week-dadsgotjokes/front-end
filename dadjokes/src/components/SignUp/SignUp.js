@@ -78,9 +78,7 @@ const SignUp = props => {
         onChange={e => handleChanges(e)}
       />
 
-      <button>accept and submit</button>
-
-      <div>By submitting you accept the terms and conditions.</div>
+      <button>Submit</button>
     </form>
   );
 };

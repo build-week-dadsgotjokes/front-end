@@ -19,9 +19,28 @@ const AddJoke = props => {
     }
   };
 
-  const SubmitJoke = effect => {
-    effect.preventDefault();
-    console.log("hello world");
+  const SubmitJoke = e => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        "https://api-dadjokes.herokuapp.com/jokes/auth/create",
+        JSON.stringify({
+          setup: setupValue,
+          punchline: punchlineValue,
+          isprivate: false
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + token
+          }
+        }
+      )
+      .then(() => {
+        setSetupValue("");
+        setPunchlineValue("");
+      });
   };
 
   return (

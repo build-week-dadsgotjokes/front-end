@@ -40,8 +40,7 @@ const SignIn = props => {
         name="username"
         onChange={e => handleChanges(e)}
       />
-      <br />
-      <br />
+
       <input
         className="default"
         type="password"
@@ -49,13 +48,7 @@ const SignIn = props => {
         name="password"
         onChange={e => handleChanges(e)}
       />
-      <button>sign in</button>
-      <div>
-        Don't have an account?{" "}
-        <Link className="linkSignUp" to="/signup">
-          Sign up now
-        </Link>
-      </div>
+      <button>Sign in</button>
     </form>
   );
 };
