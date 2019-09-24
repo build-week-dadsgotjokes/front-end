@@ -15,7 +15,11 @@ const Home = props => {
     <div>
       <h1>Hi Hungry</h1>
       <h3>I'm Dad.</h3>
-      {newUser ? <SignUp /> : <Login />}
+      {newUser ? (
+        <SignUp history={props.history} />
+      ) : (
+        <Login history={props.history} />
+      )}
       <button onClick={toggleUserStatus}>
         {newUser ? "Already Have an Account?" : "Don't have an account?"}
       </button>

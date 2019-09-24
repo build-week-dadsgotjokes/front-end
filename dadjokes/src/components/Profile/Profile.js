@@ -1,7 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Profile = () => {
-  return <div>hello user!</div>;
+const Profile = props => {
+  console.log(props);
+  const logout = e => {
+    e.preventDefault();
+    localStorage.clear();
+    window.location.href = "/";
+  };
+  return (
+    <div>
+      hello user!<button onClick={logout}>Logout</button>
+      <Link to="/jokes">Joke List</Link>
+    </div>
+  );
 };
 
 export default Profile;

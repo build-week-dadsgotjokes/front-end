@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Joke from "./Joke/Joke";
 import AddJoke from "../AddJoke/AddJoke";
+import { Link } from "react-router-dom";
 
 function JokeList() {
   const [jokes, setJokes] = useState([]);
@@ -18,21 +19,11 @@ function JokeList() {
       });
   }, []);
 
-  ///renders AddJoke and random message if user is logged in
+  ///renders AddJoke and profile link if user is logged in (profile link will be moved to navbar once ayomide pushes his branch.  Waiting for his push to avoid merge conflicts)
   const userLoggedIn = () => {
-    const messageArray = [
-      "The Lawn's Looking Great Today!",
-      "Beer is an acquired taste, so acquire a taste for cheap beer.",
-      "Pro Tip: You don't have to pick a favorite child if you don't like any of them",
-      "Never raise your hand to your kids. It leaves your groin unprotected.",
-      "A friendly reminder to sharpen your mower blades this month.",
-      "On the floor, in the office, next to the desk. If it ain't there, blame the kids.",
-      "Why would anyone do drugs when they can just mow a lawn?"
-    ];
-    let randomNum = Math.floor(Math.random() * messageArray.length);
     return (
       <div>
-        {messageArray[randomNum]}
+        <Link to="/profile">Profile</Link>
         <AddJoke />
       </div>
     );

@@ -79,8 +79,6 @@ const SignUp = props => {
       />
 
       <button>Submit</button>
-
-      <div>By submitting you accept the terms and conditions.</div>
     </form>
   );
 };
