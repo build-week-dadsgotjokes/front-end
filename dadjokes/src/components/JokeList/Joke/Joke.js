@@ -9,21 +9,25 @@ const AddJoke = props => {
     id: props.id,
     isprivate: false
   });
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     console.log("editing");
   }, [editing]);
 
+  useEffect(() => {
+    console.log("updating");
+  }, [flag]);
+
   const deleteJoke = () => {
     console.log("Attempting to delete");
   };
 
-  const submitJoke = () => {};
-
-  const handleChange = () => {};
-  const editJoke = () => {
-    console.log("editing");
+  const handleChange = e => {
+    setJoke({ ...joke, [e.target.name]: e.target.value });
   };
+
+  const editJoke = () => {};
 
   return (
     <div className="joke">
@@ -31,11 +35,11 @@ const AddJoke = props => {
       <p>{props.setup}</p>
       <p>{props.punchline}</p>
       <p onClick={deleteJoke}>Delete</p>
-      {editing ? (
+      {!editing ? (
         <p onClick={() => setEditing(!editing)}>Edit</p>
       ) : (
         <div>
-          <form onSubmit={submitJoke}>
+          <form onSubmit={editJoke}>
             <input
               type="text"
               name="setup"
