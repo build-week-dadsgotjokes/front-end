@@ -19,20 +19,21 @@ const AddJoke = props => {
     }
   };
 
-  //// STILL NOT WORKING.  GOING TO REACH OUT TO VINCENT FOR HELP ON THIS.
   const SubmitJoke = e => {
     e.preventDefault();
+    const token = localStorage.getItem("token");
     axios
       .post(
         "https://api-dadjokes.herokuapp.com/jokes/auth/create",
         JSON.stringify({
-          setup: addJoke.setup,
-          punchline: addJoke.punchline,
-          name: "test"
+          setup: setupValue,
+          punchline: punchlineValue,
+          isprivate: false
         }),
         {
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + token
           }
         }
       )
