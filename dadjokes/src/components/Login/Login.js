@@ -49,9 +49,9 @@ const SignIn = props => {
         name="password"
         onChange={e => handleChanges(e)}
       />
-      <button>sign in</button>
+      <button>Sign in</button>
       <div>
-        Don't have an account?{" "}
+        Don't have an account?
         <Link className="linkSignUp" to="/signup">
           Sign up now
         </Link>

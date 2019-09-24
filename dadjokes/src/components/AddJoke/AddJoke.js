@@ -19,9 +19,27 @@ const AddJoke = props => {
     }
   };
 
-  const SubmitJoke = effect => {
-    effect.preventDefault();
-    console.log("hello world");
+  //// STILL NOT WORKING.  GOING TO REACH OUT TO VINCENT FOR HELP ON THIS.
+  const SubmitJoke = e => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://api-dadjokes.herokuapp.com/jokes/auth/create",
+        JSON.stringify({
+          setup: addJoke.setup,
+          punchline: addJoke.punchline,
+          name: "test"
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      )
+      .then(() => {
+        setSetupValue("");
+        setPunchlineValue("");
+      });
   };
 
   return (
