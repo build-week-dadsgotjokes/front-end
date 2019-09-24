@@ -44,6 +44,7 @@ function JokeList() {
             key={joke.id}
             setup={joke.setup}
             punchline={joke.punchline}
+            user={joke.owner.username}
           />
         );
       })}

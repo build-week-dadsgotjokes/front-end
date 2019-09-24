@@ -31,11 +31,13 @@ const AddJoke = props => {
 
   return (
     <div className="joke">
-      <p>{props.id}</p>
       <p>{props.setup}</p>
       <p>{props.punchline}</p>
+      <p>
+        <em>By: {props.user}</em>
+      </p>
       <p onClick={deleteJoke}>Delete</p>
-      {!editing ? (
+      {!editing && localStorage.getItem("token") ? (
         <p onClick={() => setEditing(!editing)}>Edit</p>
       ) : (
         <div>
