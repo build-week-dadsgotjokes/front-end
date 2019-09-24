@@ -6,6 +6,7 @@ import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import JokeList from "./components/JokeList/JokeList";
 import SignUp from "./components/SignUp/SignUp";
+import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <Route path="/" component={NavBar} />
       <Route exact path="/" component={Login} />
       <Route exact path="/" component={SignUp} />
-      <Route path="/profile" component={Profile} />
+      <PrivateRoute path="/profile" component={Profile} />
       <Route path="/jokes" component={JokeList} />
       <Route path="/signup" component={SignUp} />
     </div>

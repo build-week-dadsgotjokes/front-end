@@ -1,66 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { Form, Field, withFormik } from "formik";
-import * as Yup from "yup";
-import { Link } from "react-router-dom";
 
-const SignUp = ({ errors, touched, handleSubmit, values, status }) => {
-  const [user, setUser] = useState({});
+const SignUp = props => {
+  const [newUser, setNewUser] = useState({});
 
-  useEffect(() => {
-    if (status) {
-      setUser(...user, status);
-    }
-  }, [status]);
-
-  return (
-    <>
-      <Form>
-        <h1>Create new account</h1>
-        <Field type="text" placeholder="username" name="username" />
-        {touched.username && errors.username && (
-          <p className="error">{errors.username}</p>
-        )}
-
-        <Field type="password" placeholder="password" name="password" />
-        {touched.password && errors.password && (
-          <p className="error">{errors.password}</p>
-        )}
-        <Field type="password" placeholder="confirm password" name="confirm" />
-        {touched.confirm && errors.confirm && (
-          <p className="error">{errors.confirm}</p>
-        )}
-        <button type="submit">accept and submit</button>
-        <div>By submitting you accept the terms and conditions</div>
-      </Form>
-    </>
-  );
-};
-
-const FormikForm = withFormik({
-  mapPropsToValues({ username, password, confirm }) {
-    return {
-      username: username || "",
-
-      password: password || "",
-      confirm: confirm || ""
-    };
-  },
-  validationSchema: Yup.object().shape({
-    username: Yup.string().required("Username Required"),
-
-    password: Yup.string()
-      .min(8, "8 character minimum")
-      .required("Password required"),
-    confirm: Yup.string()
-      .oneOf([Yup.ref("password"), null], "passwords don't match")
-      .required("must confirm password")
-  }),
-
-  handleSubmit(values) {
-    if (values.password === values.confirm) {
-      const username = values.username;
-      const password = values.password;
+  const handleChanges = e => {
+    setNewUser({ ...newUser, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = e => {
+    const password = newUser.password;
+    const username = newUser.username;
+    e.preventDefault();
+    if (password === newUser.confirm) {
       axios
         .post(
           "https://api-dadjokes.herokuapp.com/createnewuser",
@@ -72,6 +23,7 @@ const FormikForm = withFormik({
           }
         )
         .then(res => {
+          console.log(res);
           axios
             .post(
               "https://api-dadjokes.herokuapp.com/login",
@@ -84,14 +36,53 @@ const FormikForm = withFormik({
               }
             )
             .then(res => {
-              console.log(res.data);
+              localStorage.setItem("token", res.data["access_token"]);
+              props.history.push("/profile");
             })
             .catch(err => {
               console.log(err);
             });
+        })
+        .catch(error => {
+          console.log(error);
         });
+    } else {
+      alert("Passwords must match.");
     }
-  }
-})(SignUp);
+  };
 
-export default FormikForm;
+  return (
+    <form className="signUpDiv" onSubmit={e => handleSubmit(e)}>
+      <h2>Create new account</h2>
+      <input
+        className="default"
+        type="text"
+        placeholder="username"
+        name="username"
+        onChange={e => handleChanges(e)}
+      />
+
+      <input
+        className="default"
+        type="password"
+        placeholder="password"
+        name="password"
+        onChange={e => handleChanges(e)}
+      />
+
+      <input
+        className="default"
+        type="password"
+        placeholder="confirm password"
+        name="confirm"
+        onChange={e => handleChanges(e)}
+      />
+
+      <button>accept and submit</button>
+
+      <div>By submitting you accept the terms and conditions.</div>
+    </form>
+  );
+};
+
+export default SignUp;
