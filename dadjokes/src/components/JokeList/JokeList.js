@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Joke from "./Joke/Joke";
 import AddJoke from "../AddJoke/AddJoke";
-import SearchBar from  "../NavBar/SearchBar/SearchBar";
+import SearchBar from "../NavBar/SearchBar/SearchBar";
 
 function JokeList() {
   const [jokes, setJokes] = useState([]);
@@ -22,12 +22,16 @@ function JokeList() {
   }, []);
 
   useEffect(() => {
-    setDisplay(jokes.filter(joke=> joke.setup.toLowerCase().includes(input.toLowerCase())))
-  },[input]);
+    setDisplay(
+      jokes.filter(joke =>
+        joke.setup.toLowerCase().includes(input.toLowerCase())
+      )
+    );
+  }, [input]);
 
   useEffect(() => {
     setDisplay(jokes);
-  }, [jokes]); 
+  }, [jokes]);
 
   return (
     <div>
