@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import JokeList from "./components/JokeList/JokeList";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route exact path="/" component={Login} />
       <Route path="/profile" component={Profile} />
       <Route path="/jokes" component={JokeList} />
+      <Route path="/signup" component={SignUp} />
     </div>
   );
 }

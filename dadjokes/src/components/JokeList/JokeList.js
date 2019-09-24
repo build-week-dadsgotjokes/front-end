@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Joke from "./Joke/Joke";
-import axios from "axios";
+import AddJoke from "../AddJoke/AddJoke";
 
 function JokeList() {
   const [jokes, setJokes] = useState([]);
@@ -20,6 +20,7 @@ function JokeList() {
 
   return (
     <div>
+      <AddJoke />
       {jokes.map(joke => {
         return (
           <Joke id={joke.id} setup={joke.setup} punchline={joke.punchline} />
