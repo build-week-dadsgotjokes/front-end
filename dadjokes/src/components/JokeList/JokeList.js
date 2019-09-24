@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Joke from "./Joke/Joke";
 import AddJoke from "../AddJoke/AddJoke";
+import SearchBar from  "../NavBar/SearchBar/SearchBar";
 
 function JokeList() {
   const [jokes, setJokes] = useState([]);
+  const [display, setDisplay] = useState([]);
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     axios
@@ -18,10 +21,19 @@ function JokeList() {
       });
   }, []);
 
+  useEffect(() => {
+    setDisplay(jokes.filter(joke=> joke.setup.toLowerCase().includes(input.toLowerCase())))
+  },[input]);
+
+  useEffect(() => {
+    setDisplay(jokes);
+  }, [jokes]); 
+
   return (
     <div>
       <AddJoke />
-      {jokes.map(joke => {
+      <SearchBar onChange={setInput} value={input} />
+      {display.map(joke => {
         return (
           <Joke id={joke.id} setup={joke.setup} punchline={joke.punchline} />
         );
