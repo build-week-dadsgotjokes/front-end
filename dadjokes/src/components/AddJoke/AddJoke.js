@@ -6,6 +6,7 @@ const AddJoke = props => {
   const [addJoke, setAddJoke] = useState({});
   const [setupValue, setSetupValue] = useState("");
   const [punchlineValue, setPunchlineValue] = useState("");
+  const [isprivate, setIsprivate] = useState(false);
 
   const handleChange = effect => {
     setAddJoke({
@@ -29,7 +30,7 @@ const AddJoke = props => {
         JSON.stringify({
           setup: setupValue,
           punchline: punchlineValue,
-          isprivate: false
+          isprivate: isprivate
         }),
         {
           headers: {
@@ -43,6 +44,10 @@ const AddJoke = props => {
         setPunchlineValue("");
         window.location.href = "/jokes";
       });
+  };
+
+  const checkboxChanged = e => {
+    e.target.checked ? setIsprivate(true) : setIsprivate(false);
   };
 
   return (
@@ -62,10 +67,12 @@ const AddJoke = props => {
           value={punchlineValue}
           onChange={handleChange}
         />
-        <label for="public">Public</label>
-        <input type="checkbox" name="public" checked={addJoke.public} />
         <label for="private">Private</label>
-        <input type="checkbox" name="private" checked={addJoke.private} />
+        <input
+          type="checkbox"
+          name="private"
+          onChange={e => checkboxChanged(e)}
+        />
         <button type="submit">Save</button>
       </form>
     </div>
