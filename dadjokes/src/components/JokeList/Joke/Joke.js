@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Joke.css";
+import styled from "styled-components";
 import axios from "axios";
+
+const Body = styled.tr`
+  min-width: 100%;
+  padding: 30vh;
+`;
 
 const AddJoke = props => {
   const [editing, setEditing] = useState(false);
@@ -10,6 +16,7 @@ const AddJoke = props => {
     id: props.id,
     isprivate: false
   });
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     console.log("editing");
@@ -55,42 +62,45 @@ const AddJoke = props => {
   };
 
   return (
-    <div className="joke">
-      <p>{props.setup}</p>
-      <p>{props.punchline}</p>
-      <p>
-        <em>By: {props.user}</em>
-      </p>
-      {
-      joke.isprivate ? 
-      <p onClick={() => deleteJoke}>Delete</p>
-      <p onClick={() => setEditing(!editing)}>Edit</p> :
-      <></>
-      }
-      
-      <div>
-        <form onSubmit={e => editJoke(e)}>
-          <input
-            type="text"
-            name="setup"
-            placeholder="Setup"
-            value={joke.setup}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="punchline"
-            placeholder="Punchline"
-            value={joke.punchline}
-            onChange={handleChange}
-          />
-          <label for="private">Private</label>
-          <input type="checkbox" name="private" />
-          <p onClick={() => setEditing(!editing)}>Cancel</p>
-          <button>save</button>
-        </form>
-      </div>
-    </div>
+    <Body className="joke">
+      <th>{props.setup}</th>
+      <th>{props.punchline}</th>
+      <th>{props.user}</th>
+
+      {localStorage.getItem("token") ? (
+        (<p onClick={deleteJoke}>Delete</p>,
+        !editing ? (
+          <p onClick={() => setEditing(!editing)}>Edit</p>
+        ) : (
+          <div>
+            <form onSubmit={editJoke}>
+              <input
+                type="text"
+                name="setup"
+                placeholder="Setup"
+                value={joke.setup}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="punchline"
+                placeholder="Punchline"
+                value={joke.punchline}
+                onChange={handleChange}
+              />
+              <label for="public">Public</label>
+              <input type="checkbox" name="public" />
+              <label for="private">Private</label>
+              <input type="checkbox" name="private" />
+              <p onClick={() => setEditing(!editing)}>Cancel</p>
+              <button>save</button>
+            </form>
+          </div>
+        ))
+      ) : (
+        <></>
+      )}
+    </Body>
   );
 };
 

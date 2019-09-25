@@ -3,6 +3,15 @@ import axios from "axios";
 import Joke from "../../JokeList/Joke/Joke";
 import AddJoke from "../../AddJoke/AddJoke";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Table = styled.table`
+  width: 100%;
+`;
+
+const Head = styled.tr``;
+
+const Body = styled.tr``;
 
 function ProfileJokes() {
   const [jokes, setJokes] = useState([]);
@@ -31,7 +40,6 @@ function ProfileJokes() {
       </div>
     );
   };
-  console.log(jokes);
 
   return (
     <div>
@@ -41,16 +49,28 @@ function ProfileJokes() {
         <h2>Hi Hungry, I'm Dad</h2>
       )}
 
-      {jokes.map(joke => {
-        return (
-          <Joke
-            id={joke.id}
-            key={joke.id}
-            setup={joke.setup}
-            punchline={joke.punchline}
-          />
-        );
-      })}
+      <Table>
+        <thead>
+          <Body>
+            <th>Setup</th>
+            <th>Punchline</th>
+            <th>Username</th>
+          </Body>
+        </thead>
+
+        {jokes.map(joke => {
+          return (
+            <tbody>
+              <Joke
+                id={joke.id}
+                key={joke.id}
+                setup={joke.setup}
+                punchline={joke.punchline}
+              />
+            </tbody>
+          );
+        })}
+      </Table>
     </div>
   );
 }
