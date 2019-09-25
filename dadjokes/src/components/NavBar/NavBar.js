@@ -7,10 +7,15 @@ const Nav = styled.div`
 	background: #e56166;
 `;
 
+const Title = styled.h1`
+	color: #173947;
+	font-family: "Rock Salt", cursive;
+`;
+
 const NavBar = () => {
 	return (
 		<Nav>
-			<h1>Hi Hungry, I'm Dad</h1>
+			<Title>Hi Hungry, I'm Dad</Title>
 			<Link to="/">Home</Link>
 			<Link to="/jokes">Jokes</Link>
 			<Link to="/profile">Profile</Link>

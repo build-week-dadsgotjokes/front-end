@@ -5,6 +5,15 @@ import styled from "styled-components";
 const Body = styled.tr`
 	min-width: 100%;
 	padding: 30vh;
+	border: 1px solid black;
+`;
+
+const Item = styled.td`
+	border: 1px solid black;
+	border-collapse: collapse;
+	background-color: #173947;
+	color: #4fb5c8;
+	font-family: "Neucha", cursive;
 `;
 
 const AddJoke = props => {
@@ -36,15 +45,15 @@ const AddJoke = props => {
 	const editJoke = () => {};
 
 	return (
-		<Body className="joke">
-			<th>{props.setup}</th>
-			<th>{props.punchline}</th>
-			<th>{props.user}</th>
+		<Body>
+			<Item>{props.setup}</Item>
+			<Item>{props.punchline}</Item>
+			<Item>{props.user}</Item>
 
 			{localStorage.getItem("token") ? (
 				(<p onClick={deleteJoke}>Delete</p>,
 				!editing ? (
-					<p onClick={() => setEditing(!editing)}>Edit</p>
+					<i className="fa fa-edit" onClick={() => setEditing(!editing)}></i>
 				) : (
 					<div>
 						<form onSubmit={editJoke}>
