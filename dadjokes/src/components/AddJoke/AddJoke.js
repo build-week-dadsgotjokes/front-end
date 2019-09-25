@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { removePropertiesDeep } from "@babel/types";
 
 const AddJoke = props => {
   const [addJoke, setAddJoke] = useState({});
@@ -40,6 +41,7 @@ const AddJoke = props => {
       .then(() => {
         setSetupValue("");
         setPunchlineValue("");
+        window.location.href = "/jokes";
       });
   };
 

@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Joke from "./Joke/Joke";
 import AddJoke from "../AddJoke/AddJoke";
+
+import SearchBar from "../NavBar/SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 
-function JokeList() {
+const JokeList = props => {
 	const [jokes, setJokes] = useState([]);
+	const [input, setInput] = useState("");
+	const [display, setDisplay] = useState([]);
+	const [flag, setFlag] = useState(false);
+	console.log(props);
 
 	useEffect(() => {
 		axios
@@ -13,18 +19,37 @@ function JokeList() {
 			.then(response => {
 				console.log("Jokes", response);
 				setJokes(response.data);
+				setDisplay(response.data);
 			})
 			.catch(error => {
 				console.log("The data was not returned", error);
 			});
 	}, []);
 
-	///renders AddJoke and profile link if user is logged in (profile link will be moved to navbar once ayomide pushes his branch.  Waiting for his push to avoid merge conflicts)
+	///Search Functionality
+	useEffect(() => {
+		setDisplay(
+			jokes.filter(joke =>
+				joke.setup.toLowerCase().includes(input.toLowerCase())
+			)
+		);
+	}, [flag]);
+
+	const changeHandler = e => {
+		setInput(e.target.value);
+	};
+
+	const submitHandler = e => {
+		e.preventDefault();
+		setFlag(!flag);
+	};
+	///
+
+	///renders link to profile and addJoke form if user is logged in
 	const userLoggedIn = () => {
 		return (
 			<div>
-				<Link to="/profile">Profile</Link>
-				<AddJoke />
+				<AddJoke history={props.history} />
 			</div>
 		);
 	};
@@ -36,8 +61,11 @@ function JokeList() {
 			) : (
 				<h2>Hi Hungry, I'm Dad</h2>
 			)}
-
-			{jokes.map(joke => {
+			<form onSubmit={e => submitHandler(e)}>
+				<input onChange={e => changeHandler(e)} />
+				<button>Search</button>
+			</form>
+			{display.map(joke => {
 				return (
 					<Joke
 						id={joke.id}
@@ -50,6 +78,6 @@ function JokeList() {
 			})}
 		</div>
 	);
-}
+};
 
 export default JokeList;

@@ -1,5 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const SignUpDiv = styled.div`
+background: #4FB5C8,
+color: #173947
+`;
+
+const SubButton = styled.button`
+border-radius: 30px,
+color: #173947,
+background: #E56166
+`;
 
 const SignUp = props => {
   const [newUser, setNewUser] = useState({});
@@ -52,34 +64,36 @@ const SignUp = props => {
   };
 
   return (
-    <form className="signUpDiv" onSubmit={e => handleSubmit(e)}>
+    <SignUpDiv className="signUpDiv">
       <h2>Create new account</h2>
-      <input
-        className="default"
-        type="text"
-        placeholder="username"
-        name="username"
-        onChange={e => handleChanges(e)}
-      />
+      <form onSubmit={e => handleSubmit(e)}>
+        <input
+          className="default"
+          type="text"
+          placeholder="username"
+          name="username"
+          onChange={e => handleChanges(e)}
+        />
 
-      <input
-        className="default"
-        type="password"
-        placeholder="password"
-        name="password"
-        onChange={e => handleChanges(e)}
-      />
+        <input
+          className="default"
+          type="password"
+          placeholder="password"
+          name="password"
+          onChange={e => handleChanges(e)}
+        />
 
-      <input
-        className="default"
-        type="password"
-        placeholder="confirm password"
-        name="confirm"
-        onChange={e => handleChanges(e)}
-      />
+        <input
+          className="default"
+          type="password"
+          placeholder="confirm password"
+          name="confirm"
+          onChange={e => handleChanges(e)}
+        />
 
-      <button>Submit</button>
-    </form>
+        <SubButton>Submit</SubButton>
+      </form>
+    </SignUpDiv>
   );
 };
 
