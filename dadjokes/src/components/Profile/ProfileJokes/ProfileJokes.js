@@ -31,6 +31,7 @@ function ProfileJokes() {
       </div>
     );
   };
+  console.log(jokes);
 
   return (
     <div>

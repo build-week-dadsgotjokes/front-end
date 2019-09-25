@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Joke.css";
+import axios from "axios";
 
 const AddJoke = props => {
   const [editing, setEditing] = useState(false);
@@ -9,15 +10,10 @@ const AddJoke = props => {
     id: props.id,
     isprivate: false
   });
-  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     console.log("editing");
   }, [editing]);
-
-  useEffect(() => {
-    console.log("updating");
-  }, [flag]);
 
   const deleteJoke = () => {
     console.log("Attempting to delete");
@@ -27,7 +23,27 @@ const AddJoke = props => {
     setJoke({ ...joke, [e.target.name]: e.target.value });
   };
 
-  const editJoke = () => {};
+  const editJoke = e => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    axios
+      .put(
+        `https://api-dadjokes.herokuapp.com/jokes/auth/update/${joke.id}`,
+        JSON.stringify({
+          ...joke,
+          setup: joke.setup,
+          punchline: joke.punchline,
+          isprivate: joke.isprivate
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + token
+          }
+        }
+      )
+      .catch(err => console.log(err));
+  };
 
   return (
     <div className="joke">
@@ -43,7 +59,7 @@ const AddJoke = props => {
           <p onClick={() => setEditing(!editing)}>Edit</p>
         ) : (
           <div>
-            <form onSubmit={editJoke}>
+            <form onSubmit={e => editJoke(e)}>
               <input
                 type="text"
                 name="setup"
@@ -58,8 +74,6 @@ const AddJoke = props => {
                 value={joke.punchline}
                 onChange={handleChange}
               />
-              <label for="public">Public</label>
-              <input type="checkbox" name="public" />
               <label for="private">Private</label>
               <input type="checkbox" name="private" />
               <p onClick={() => setEditing(!editing)}>Cancel</p>
