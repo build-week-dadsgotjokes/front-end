@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Joke from "./Joke/Joke";
 import AddJoke from "../AddJoke/AddJoke";
-
+import styled from "styled-components";
 import SearchBar from "../NavBar/SearchBar/SearchBar";
 import { Link } from "react-router-dom";
+
+const Table = styled.table`
+	width: 100%;
+`;
 
 const JokeList = props => {
 	const [jokes, setJokes] = useState([]);
@@ -65,7 +69,7 @@ const JokeList = props => {
 				<input onChange={e => changeHandler(e)} />
 				<button>Search</button>
 			</form>
-			<table>
+			<Table>
 				<thead>
 					<tr>
 						<th>Setup</th>
@@ -87,7 +91,7 @@ const JokeList = props => {
 						</tbody>
 					);
 				})}
-			</table>
+			</Table>
 		</div>
 	);
 };

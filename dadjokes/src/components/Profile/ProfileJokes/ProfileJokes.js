@@ -9,13 +9,9 @@ const Table = styled.table`
 	width: 100%;
 `;
 
-const Head = styled.tr`
-	min-width: 100%;
-`;
+const Head = styled.tr``;
 
-const Body = styled.tr`
-	min-width: 100%;
-`;
+const Body = styled.tr``;
 
 function ProfileJokes() {
 	const [jokes, setJokes] = useState([]);
