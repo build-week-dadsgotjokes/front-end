@@ -6,11 +6,11 @@ import AddJoke from "../AddJoke/AddJoke";
 import SearchBar from "../NavBar/SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 
-
 function JokeList() {
   const [jokes, setJokes] = useState([]);
-  const [display, setDisplay] = useState([]);
   const [input, setInput] = useState("");
+  const [display, setDisplay] = useState([]);
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     axios
@@ -18,31 +18,29 @@ function JokeList() {
       .then(response => {
         console.log("Jokes", response);
         setJokes(response.data);
+        setDisplay(response.data);
       })
       .catch(error => {
         console.log("The data was not returned", error);
       });
   }, []);
-  
+
   useEffect(() => {
     setDisplay(
       jokes.filter(joke =>
         joke.setup.toLowerCase().includes(input.toLowerCase())
       )
     );
-  }, [input]);
+  }, [flag]);
 
-  useEffect(() => {
-    setDisplay(jokes);
-  }, [jokes]);
+  const changeHandler = e => {
+    setInput(e.target.value);
+  };
 
-  return (
-    <div>
-      <AddJoke />
-      <SearchBar onChange={setInput} value={input} />
-      {display.map(joke => {
-
- 
+  const submitHandler = e => {
+    e.preventDefault();
+    setFlag(!flag);
+  };
   const userLoggedIn = () => {
     return (
       <div>
@@ -51,17 +49,19 @@ function JokeList() {
       </div>
     );
   };
-	
-	return (
-		<div>
-			{localStorage.getItem("token") ? (
-				userLoggedIn()
-			) : (
-				<h2>Hi Hungry, I'm Dad</h2>
-			)}
 
-      {jokes.map(joke => {
-
+  return (
+    <div>
+      {localStorage.getItem("token") ? (
+        userLoggedIn()
+      ) : (
+        <h2>Hi Hungry, I'm Dad</h2>
+      )}
+      <form onSubmit={e => submitHandler(e)}>
+        <input onChange={e => changeHandler(e)} />
+        <button>Search</button>
+      </form>
+      {display.map(joke => {
         return (
           <Joke
             id={joke.id}
@@ -74,7 +74,6 @@ function JokeList() {
       })}
     </div>
   );
-
 }
 
 export default JokeList;
