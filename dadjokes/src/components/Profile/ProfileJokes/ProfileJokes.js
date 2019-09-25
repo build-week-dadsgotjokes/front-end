@@ -23,7 +23,6 @@ function ProfileJokes() {
 	const userLoggedIn = () => {
 		return (
 			<div>
-				<Link to="/profile">Profile</Link>
 				<AddJoke />
 			</div>
 		);
