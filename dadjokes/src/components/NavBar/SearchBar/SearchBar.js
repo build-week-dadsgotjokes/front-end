@@ -17,4 +17,3 @@ const SearchBar = ({ onChange, value }) => {
 };
 
 export default SearchBar;
-
