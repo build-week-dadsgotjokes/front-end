@@ -8,16 +8,22 @@ import SignUp from "./components/SignUp/SignUp";
 import PrivateRoute from "./utils/PrivateRoute";
 import Home from "./components/Home/Home";
 
+import styled from "styled-components";
+
+const Container = styled.div`
+	background: #e56166;
+`;
+
 function App() {
-  return (
-    <div className="App">
-      <Route path="/" component={NavBar} />
-      <Route exact path="/" component={Home} />
-      <PrivateRoute path="/profile" component={Profile} />
-      <Route path="/jokes" component={JokeList} />
-      <Route path="/signup" component={SignUp} />
-    </div>
-  );
+	return (
+		<Container className="App">
+			<Route path="/" component={NavBar} />
+			<Route exact path="/" component={Home} />
+			<PrivateRoute path="/profile" component={Profile} />
+			<Route path="/jokes" component={JokeList} />
+			<Route path="/signup" component={SignUp} />
+		</Container>
+	);
 }
 
 export default App;
