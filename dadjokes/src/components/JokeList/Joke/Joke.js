@@ -37,33 +37,37 @@ const AddJoke = props => {
         <em>By: {props.user}</em>
       </p>
       <p onClick={deleteJoke}>Delete</p>
-      {!editing && localStorage.getItem("token") ? (
-        <p onClick={() => setEditing(!editing)}>Edit</p>
+      {localStorage.getItem("token") ? (
+        !editing ? (
+          <p onClick={() => setEditing(!editing)}>Edit</p>
+        ) : (
+          <div>
+            <form onSubmit={editJoke}>
+              <input
+                type="text"
+                name="setup"
+                placeholder="Setup"
+                value={joke.setup}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                name="punchline"
+                placeholder="Punchline"
+                value={joke.punchline}
+                onChange={handleChange}
+              />
+              <label for="public">Public</label>
+              <input type="checkbox" name="public" />
+              <label for="private">Private</label>
+              <input type="checkbox" name="private" />
+              <button type="submit">Save</button>
+              <p onClick={() => setEditing(!editing)}>Cancel</p>
+            </form>
+          </div>
+        )
       ) : (
-        <div>
-          <form onSubmit={editJoke}>
-            <input
-              type="text"
-              name="setup"
-              placeholder="Setup"
-              value={joke.setup}
-              onChange={handleChange}
-            />
-            <input
-              type="text"
-              name="punchline"
-              placeholder="Punchline"
-              value={joke.punchline}
-              onChange={handleChange}
-            />
-            <label for="public">Public</label>
-            <input type="checkbox" name="public" />
-            <label for="private">Private</label>
-            <input type="checkbox" name="private" />
-            <button type="submit">Save</button>
-            <p onClick={() => setEditing(!editing)}>Cancel</p>
-          </form>
-        </div>
+        <></>
       )}
     </div>
   );
