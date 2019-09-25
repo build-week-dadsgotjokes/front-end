@@ -15,6 +15,7 @@ const Body = styled.tr``;
 
 function ProfileJokes() {
   const [jokes, setJokes] = useState([]);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -33,9 +34,27 @@ function ProfileJokes() {
       });
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    axios
+      .get(
+        "https://api-dadjokes.herokuapp.com/users/getusername?credentials=%7B%7D&details=%7B%7D&principal=%7B%7D",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + token
+          }
+        }
+      )
+      .then(res => setUsername(res.data.username));
+  }, [jokes]);
+
+  console.log(jokes);
+
   const userLoggedIn = () => {
     return (
       <div>
+        <h2>{`Hello, ${username}`}</h2>
         <AddJoke />
       </div>
     );
@@ -66,6 +85,7 @@ function ProfileJokes() {
                 key={joke.id}
                 setup={joke.setup}
                 punchline={joke.punchline}
+                user={username}
               />
             </tbody>
           );

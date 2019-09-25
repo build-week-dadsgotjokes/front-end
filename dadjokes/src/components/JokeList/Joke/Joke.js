@@ -24,13 +24,11 @@ const AddJoke = props => {
 
   const deleteJoke = () => {
     const token = localStorage.getItem("token");
-    console.log(joke.id);
     axios
       .delete(
         `https://api-dadjokes.herokuapp.com/jokes/auth/delete/${joke.id}`,
         {
           headers: {
-            accept: "application/json",
             Authorization: "Bearer" + token
           }
         }
