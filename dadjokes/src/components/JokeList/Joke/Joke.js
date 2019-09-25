@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Joke.css";
-import axios from "axios";
 
 const AddJoke = props => {
   const [editing, setEditing] = useState(false);
@@ -28,21 +27,7 @@ const AddJoke = props => {
     setJoke({ ...joke, [e.target.name]: e.target.value });
   };
 
-  const editJoke = e => {
-    e.preventDefault();
-    setEditing(!editing);
-    const token = localStorage.getItem("token");
-    axios.put(
-      "https://api-dadjokes.herokuapp.com/jokes/auth/update/{id}",
-      JSON.stringify({ joke }),
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer" + token
-        }
-      }
-    );
-  };
+  const editJoke = () => {};
 
   return (
     <div className="joke">

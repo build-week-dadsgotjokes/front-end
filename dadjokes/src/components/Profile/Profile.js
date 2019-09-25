@@ -12,7 +12,6 @@ const Profile = props => {
 	return (
 		<div>
 			hello user!<button onClick={logout}>Logout</button>
-			<Link to="/jokes">Joke List</Link>
 			<ProfileJokes />
 		</div>
 	);

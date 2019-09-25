@@ -7,78 +7,77 @@ import SearchBar from "../NavBar/SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 
 const JokeList = props => {
-  const [jokes, setJokes] = useState([]);
-  const [input, setInput] = useState("");
-  const [display, setDisplay] = useState([]);
-  const [flag, setFlag] = useState(false);
-  console.log(props);
+	const [jokes, setJokes] = useState([]);
+	const [input, setInput] = useState("");
+	const [display, setDisplay] = useState([]);
+	const [flag, setFlag] = useState(false);
+	console.log(props);
 
-  useEffect(() => {
-    axios
-      .get(`https://api-dadjokes.herokuapp.com/jokes/public`)
-      .then(response => {
-        console.log("Jokes", response);
-        setJokes(response.data);
-        setDisplay(response.data);
-      })
-      .catch(error => {
-        console.log("The data was not returned", error);
-      });
-  }, []);
+	useEffect(() => {
+		axios
+			.get(`https://api-dadjokes.herokuapp.com/jokes/public`)
+			.then(response => {
+				console.log("Jokes", response);
+				setJokes(response.data);
+				setDisplay(response.data);
+			})
+			.catch(error => {
+				console.log("The data was not returned", error);
+			});
+	}, []);
 
-  ///Search Functionality
-  useEffect(() => {
-    setDisplay(
-      jokes.filter(joke =>
-        joke.setup.toLowerCase().includes(input.toLowerCase())
-      )
-    );
-  }, [flag]);
+	///Search Functionality
+	useEffect(() => {
+		setDisplay(
+			jokes.filter(joke =>
+				joke.setup.toLowerCase().includes(input.toLowerCase())
+			)
+		);
+	}, [flag]);
 
-  const changeHandler = e => {
-    setInput(e.target.value);
-  };
+	const changeHandler = e => {
+		setInput(e.target.value);
+	};
 
-  const submitHandler = e => {
-    e.preventDefault();
-    setFlag(!flag);
-  };
-  ///
+	const submitHandler = e => {
+		e.preventDefault();
+		setFlag(!flag);
+	};
+	///
 
-  ///renders link to profile and addJoke form if user is logged in
-  const userLoggedIn = () => {
-    return (
-      <div>
-        <Link to="/profile">Profile</Link>
-        <AddJoke history={props.history} />
-      </div>
-    );
-  };
+	///renders link to profile and addJoke form if user is logged in
+	const userLoggedIn = () => {
+		return (
+			<div>
+				<AddJoke history={props.history} />
+			</div>
+		);
+	};
 
-  return (
-    <div>
-      {localStorage.getItem("token") ? (
-        userLoggedIn()
-      ) : (
-        <h2>Hi Hungry, I'm Dad</h2>
-      )}
-      <form onSubmit={e => submitHandler(e)}>
-        <input onChange={e => changeHandler(e)} />
-        <button>Search</button>
-      </form>
-      {display.map(joke => {
-        return (
-          <Joke
-            id={joke.id}
-            key={joke.id}
-            setup={joke.setup}
-            punchline={joke.punchline}
-            user={joke.owner.username}
-          />
-        );
-      })}
-    </div>
-  );
+	return (
+		<div>
+			{localStorage.getItem("token") ? (
+				userLoggedIn()
+			) : (
+				<h2>Hi Hungry, I'm Dad</h2>
+			)}
+			<form onSubmit={e => submitHandler(e)}>
+				<input onChange={e => changeHandler(e)} />
+				<button>Search</button>
+			</form>
+			{display.map(joke => {
+				return (
+					<Joke
+						id={joke.id}
+						key={joke.id}
+						setup={joke.setup}
+						punchline={joke.punchline}
+						user={joke.owner.username}
+					/>
+				);
+			})}
+		</div>
+	);
 };
 
 export default JokeList;
