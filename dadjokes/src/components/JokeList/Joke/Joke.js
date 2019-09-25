@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Joke.css";
+import axios from "axios";
 
 const AddJoke = props => {
   const [editing, setEditing] = useState(false);
@@ -27,7 +28,21 @@ const AddJoke = props => {
     setJoke({ ...joke, [e.target.name]: e.target.value });
   };
 
-  const editJoke = () => {};
+  const editJoke = e => {
+    e.preventDefault();
+    setEditing(!editing);
+    const token = localStorage.getItem("token");
+    axios.put(
+      "https://api-dadjokes.herokuapp.com/jokes/auth/update/{id}",
+      JSON.stringify({ joke }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer" + token
+        }
+      }
+    );
+  };
 
   return (
     <div className="joke">
@@ -61,8 +76,8 @@ const AddJoke = props => {
               <input type="checkbox" name="public" />
               <label for="private">Private</label>
               <input type="checkbox" name="private" />
-              <button type="submit">Save</button>
               <p onClick={() => setEditing(!editing)}>Cancel</p>
+              <button>save</button>
             </form>
           </div>
         )

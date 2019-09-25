@@ -6,11 +6,12 @@ import AddJoke from "../AddJoke/AddJoke";
 import SearchBar from "../NavBar/SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 
-function JokeList() {
+const JokeList = props => {
   const [jokes, setJokes] = useState([]);
   const [input, setInput] = useState("");
   const [display, setDisplay] = useState([]);
   const [flag, setFlag] = useState(false);
+  console.log(props);
 
   useEffect(() => {
     axios
@@ -25,6 +26,7 @@ function JokeList() {
       });
   }, []);
 
+  ///Search Functionality
   useEffect(() => {
     setDisplay(
       jokes.filter(joke =>
@@ -41,11 +43,14 @@ function JokeList() {
     e.preventDefault();
     setFlag(!flag);
   };
+  ///
+
+  ///renders link to profile and addJoke form if user is logged in
   const userLoggedIn = () => {
     return (
       <div>
         <Link to="/profile">Profile</Link>
-        <AddJoke />
+        <AddJoke history={props.history} />
       </div>
     );
   };
@@ -74,6 +79,6 @@ function JokeList() {
       })}
     </div>
   );
-}
+};
 
 export default JokeList;
