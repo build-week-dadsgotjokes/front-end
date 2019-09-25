@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Joke.css";
+import styled from "styled-components";
+
+const Body = styled.tr`
+	min-width: 100%;
+	padding: 30vh;
+`;
 
 const AddJoke = props => {
 	const [editing, setEditing] = useState(false);
@@ -30,12 +36,11 @@ const AddJoke = props => {
 	const editJoke = () => {};
 
 	return (
-		<div className="joke">
-			<tr>
-				<th>{props.setup}</th>
-				<th>{props.punchline}</th>
-				<th>{props.user}</th>
-			</tr>
+		<Body className="joke">
+			<th>{props.setup}</th>
+			<th>{props.punchline}</th>
+			<th>{props.user}</th>
+
 			{localStorage.getItem("token") ? (
 				(<p onClick={deleteJoke}>Delete</p>,
 				!editing ? (
@@ -69,7 +74,7 @@ const AddJoke = props => {
 			) : (
 				<></>
 			)}
-		</div>
+		</Body>
 	);
 };
 
