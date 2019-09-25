@@ -16,7 +16,16 @@ const AddJoke = props => {
   }, [editing]);
 
   const deleteJoke = () => {
-    console.log("Attempting to delete");
+    const token = localStorage.getItem("token");
+    axios.delete(
+      `https://api-dadjokes.herokuapp.com/jokes/auth/delete/${joke.id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer" + token
+        }
+      }
+    );
   };
 
   const handleChange = e => {
@@ -52,38 +61,35 @@ const AddJoke = props => {
       <p>
         <em>By: {props.user}</em>
       </p>
-
-      {localStorage.getItem("token") ? (
-        (<p onClick={deleteJoke}>Delete</p>,
-        !editing ? (
-          <p onClick={() => setEditing(!editing)}>Edit</p>
-        ) : (
-          <div>
-            <form onSubmit={e => editJoke(e)}>
-              <input
-                type="text"
-                name="setup"
-                placeholder="Setup"
-                value={joke.setup}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="punchline"
-                placeholder="Punchline"
-                value={joke.punchline}
-                onChange={handleChange}
-              />
-              <label for="private">Private</label>
-              <input type="checkbox" name="private" />
-              <p onClick={() => setEditing(!editing)}>Cancel</p>
-              <button>save</button>
-            </form>
-          </div>
-        ))
-      ) : (
-        <></>
-      )}
+      {
+      joke.isprivate ? 
+      <p onClick={() => deleteJoke}>Delete</p>
+      <p onClick={() => setEditing(!editing)}>Edit</p> :
+      <></>
+      }
+      
+      <div>
+        <form onSubmit={e => editJoke(e)}>
+          <input
+            type="text"
+            name="setup"
+            placeholder="Setup"
+            value={joke.setup}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="punchline"
+            placeholder="Punchline"
+            value={joke.punchline}
+            onChange={handleChange}
+          />
+          <label for="private">Private</label>
+          <input type="checkbox" name="private" />
+          <p onClick={() => setEditing(!editing)}>Cancel</p>
+          <button>save</button>
+        </form>
+      </div>
     </div>
   );
 };
