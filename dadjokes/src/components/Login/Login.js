@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import styled from 'styled-components';
+
+const SignInDiv = styled.div`
+background:  #4FB5C8
+`;
 
 const SignIn = props => {
   const [user, setUser] = useState({});
@@ -31,7 +36,7 @@ const SignIn = props => {
   };
 
   return (
-    <form className="signInDiv" onSubmit={e => handleSubmit(e)}>
+    <SignInDiv className="signInDiv" onSubmit={e => handleSubmit(e)}>
       <h2>Welcome back</h2>
       <input
         className="default"
@@ -49,7 +54,7 @@ const SignIn = props => {
         onChange={e => handleChanges(e)}
       />
       <button>Sign in</button>
-    </form>
+    </SignInDiv>
   );
 };
 export default SignIn;

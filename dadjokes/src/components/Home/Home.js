@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
+import styled from "styled-components";
+
+const Greeting = styled.div`
+background: #4FB5C8
+color: #173947
+`;
 
 const Home = props => {
   const [newUser, setNewUser] = useState(true);
@@ -12,7 +18,7 @@ const Home = props => {
     props.history.push("/profile");
   }
   return (
-    <div>
+    <Greeting>
       <h1>Hi Hungry</h1>
       <h3>I'm Dad.</h3>
       {newUser ? (
@@ -23,7 +29,7 @@ const Home = props => {
       <button onClick={toggleUserStatus}>
         {newUser ? "Already Have an Account?" : "Don't have an account?"}
       </button>
-    </div>
+    </Greeting>
   );
 };
 
