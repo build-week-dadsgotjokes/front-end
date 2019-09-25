@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Joke.css";
 import styled from "styled-components";
+import axios from "axios";
 
 const Body = styled.tr`
 	min-width: 100%;
@@ -17,30 +18,60 @@ const Item = styled.td`
 `;
 
 const AddJoke = props => {
-	const [editing, setEditing] = useState(false);
-	const [joke, setJoke] = useState({
-		setup: props.setup,
-		punchline: props.punchline,
-		id: props.id,
-		isprivate: false
-	});
-	const [flag, setFlag] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [joke, setJoke] = useState({
+    setup: props.setup,
+    punchline: props.punchline,
+    id: props.id,
+    isprivate: false
+  });
+  const [flag, setFlag] = useState(false);
 
-	useEffect(() => {
-		console.log("editing");
-	}, [editing]);
+  useEffect(() => {
+    console.log("editing");
+  }, [editing]);
 
-	useEffect(() => {
-		console.log("updating");
-	}, [flag]);
+  const deleteJoke = () => {
+    const token = localStorage.getItem("token");
+    console.log(joke.id);
+    axios
+      .delete(
+        `https://api-dadjokes.herokuapp.com/jokes/auth/delete/${joke.id}`,
+        {
+          headers: {
+            accept: "application/json",
+            Authorization: "Bearer" + token
+          }
+        }
+      )
+      .catch(err => console.log(err));
+  };
 
-	const deleteJoke = () => {
-		console.log("Attempting to delete");
-	};
+  const handleChange = e => {
+    setJoke({ ...joke, [e.target.name]: e.target.value });
+  };
 
-	const handleChange = e => {
-		setJoke({ ...joke, [e.target.name]: e.target.value });
-	};
+  const editJoke = e => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    axios
+      .put(
+        `https://api-dadjokes.herokuapp.com/jokes/auth/update/${joke.id}`,
+        JSON.stringify({
+          ...joke,
+          setup: joke.setup,
+          punchline: joke.punchline,
+          isprivate: joke.isprivate
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer" + token
+          }
+        }
+      )
+      .catch(err => console.log(err));
+  };
 
 	const editJoke = () => {};
 
