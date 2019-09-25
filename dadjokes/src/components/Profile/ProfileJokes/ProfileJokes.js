@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Joke from "./Joke/Joke";
-import AddJoke from "../AddJoke/AddJoke";
+import Joke from "../../JokeList/Joke/Joke";
+import AddJoke from "../../AddJoke/AddJoke";
 import { Link } from "react-router-dom";
 
-function JokeList() {
+function ProfileJokes() {
 	const [jokes, setJokes] = useState([]);
 
 	useEffect(() => {
@@ -52,4 +52,4 @@ function JokeList() {
 	);
 }
 
-export default JokeList;
+export default ProfileJokes;

@@ -6,7 +6,9 @@ const Nav = styled.div`
 background: #E56166
 `;
 
+
 const NavBar = () => {
+
   return (
     <Nav>
       Navbar
