@@ -51,8 +51,9 @@ const AddJoke = props => {
       <p>
         <em>By: {props.user}</em>
       </p>
-      <p onClick={deleteJoke}>Delete</p>
+
       {localStorage.getItem("token") ? (
+        (<p onClick={deleteJoke}>Delete</p>,
         !editing ? (
           <p onClick={() => setEditing(!editing)}>Edit</p>
         ) : (
@@ -80,7 +81,7 @@ const AddJoke = props => {
               <button>save</button>
             </form>
           </div>
-        )
+        ))
       ) : (
         <></>
       )}
