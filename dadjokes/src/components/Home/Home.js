@@ -19,8 +19,6 @@ const Home = props => {
   }
   return (
     <Greeting>
-      <h1>Hi Hungry</h1>
-      <h3>I'm Dad.</h3>
       {newUser ? (
         <SignUp history={props.history} />
       ) : (
