@@ -9,6 +9,7 @@ const Profile = props => {
 		localStorage.clear();
 		window.location.href = "/";
 	};
+
 	return (
 		<div>
 			hello user!<button onClick={logout}>Logout</button>
