@@ -7,7 +7,15 @@ import {
   Emphasized,
   CardInfo,
   ButtonRow,
-  TextBtn
+  TextBtn,
+  PrivCheckbox,
+  CheckboxLabel,
+  Input,
+  FlexRow,
+  Button,
+  CardPunch,
+  ShowPunch,
+  CardId
 } from "../../../styles/globalStyles";
 
 const AddJoke = props => {
@@ -27,10 +35,14 @@ const AddJoke = props => {
         `https://api-dadjokes.herokuapp.com/jokes/auth/delete/${joke.id}`,
         {
           headers: {
-            Authorization: "Bearer" + token
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
           }
         }
       )
+
+      .then(res => console.log(res))
+      .then(res => (window.location.href = "/jokes"))
       .catch(err => console.log(err));
   };
 
@@ -63,16 +75,14 @@ const AddJoke = props => {
   return (
     <CardContainer className="joke">
       <CardInfo>
-        <CardContent>#{props.id}</CardContent>
+        <CardId>#{props.id}</CardId>
         <CardContent>{props.setup}</CardContent>
         {show ? (
-          <CardContent onClick={() => setShow(false)}>
+          <CardPunch onClick={() => setShow(false)}>
             {props.punchline}
-          </CardContent>
+          </CardPunch>
         ) : (
-          <CardContent onClick={() => setShow(true)}>
-            Show Punchline
-          </CardContent>
+          <ShowPunch onClick={() => setShow(true)}>Show Punchline</ShowPunch>
         )}
         <Emphasized>By: {props.user}</Emphasized>
       </CardInfo>
@@ -89,23 +99,27 @@ const AddJoke = props => {
       {editing ? (
         <div>
           <form onSubmit={editJoke}>
-            <input
+            <Input
               type="text"
               name="setup"
               placeholder="Setup"
               value={joke.setup}
               onChange={handleChange}
             />
-            <input
+            <Input
               type="text"
               name="punchline"
               placeholder="Punchline"
               value={joke.punchline}
               onChange={handleChange}
             />
-            <label for="private">Private</label>
-            <input type="checkbox" name="private" />
-            <button>save</button>
+            <FlexRow>
+              <CheckboxLabel for="private">
+                <PrivCheckbox type="checkbox" name="private" />
+                Private
+              </CheckboxLabel>
+              <Button>save</Button>
+            </FlexRow>
           </form>
         </div>
       ) : (

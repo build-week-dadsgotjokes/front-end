@@ -5,8 +5,17 @@ import AddJoke from "../AddJoke/AddJoke";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useInput } from "../../hooks/useInput";
+<<<<<<< HEAD
 import { Body, AddJokeMain } from "../../styles/globalStyles";
 import { JokeContext, JokeProvider } from "../../contexts/JokeContext";
+=======
+import {
+  Body,
+  AddJokeMain,
+  SearchInput,
+  Button
+} from "../../styles/globalStyles";
+>>>>>>> master
 
 const JokeList = props => {
   const [jokes, setJokes] = useContext(JokeContext);
@@ -62,6 +71,7 @@ const JokeList = props => {
   ///
 
   return (
+<<<<<<< HEAD
     <div>
       <Body>
         <form onSubmit={e => submitHandler(e)}>
@@ -73,6 +83,21 @@ const JokeList = props => {
         ) : (
           <h2>Hi Hungry, I'm Dad</h2>
         )}
+=======
+    <Body>
+      <form onSubmit={e => submitHandler(e)}>
+        <SearchInput
+          onChange={e => handleInput(e.target.value)}
+          value={input}
+        />
+        <Button>Search</Button>
+      </form>
+      {localStorage.getItem("token") ? (
+        userLoggedIn()
+      ) : (
+        <h2>Hi Hungry, I'm Dad</h2>
+      )}
+>>>>>>> master
 
         {display.map(joke => {
           return (

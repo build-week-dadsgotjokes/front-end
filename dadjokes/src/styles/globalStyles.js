@@ -25,11 +25,13 @@ export const Button = styled.button`
   background: #537d91;
   color: white;
   border-radius: 3px;
-  border: none;
+  border: 1px solid black;
   padding: 5px;
-  margin: 20px auto;
+  margin: 5px
+  font-size: 1rem;
   box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
   transition: 0.1s;
+  filter: brightness(97%);
   &:hover {
     filter: brightness(130%);
   }
@@ -74,6 +76,52 @@ export const PageHeader = styled.h2`
   margin: 2% auto;
 `;
 
+export const SaveJoke = styled.button`
+  background: #537d91;
+  border: 1px solid black;
+  border-radius: 3px
+  color: white;
+  filter: brightness(90%);
+  padding: 2px;
+  min-width: 50px;
+  margin: 10px 10px;
+  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+  &:hover {
+    cursor: ponter;
+    filter: brightness(105%);
+  }
+  &:activate {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.7);
+  }
+`;
+
+export const EnterJoke = styled.input`
+  border-radius: 3px;
+  border: 1px solid black;
+  background: lightgrey;
+  filter: brightness(110%);
+  padding: 5px;
+  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+`;
+
+export const PrivCheckbox = styled.input`
+  display: block;
+  position: relative;
+  // filter: brightness(100%);
+  background: #f77754;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+  transition: all 0.1s ease-out;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(60%);
+    background: #f77754;
+  }
+`;
+
 export const SignIn = styled.div`
   width: 40%;
   height: 93vh;
@@ -93,6 +141,12 @@ export const SignInForm = styled.form`
   flex-flow: column wrap;
 `;
 
+export const CheckboxLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+`;
 export const Input = styled.input.attrs(props => ({
   type: props.type,
   placeholder: props.placeholder || "Input Information"
@@ -102,6 +156,17 @@ export const Input = styled.input.attrs(props => ({
   padding: 5px;
   width: 60%;
   margin: 10px auto;
+`;
+
+export const FlexRow = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+`;
+
+export const SearchInput = styled(Input)`
+  width: 200px;
+  margin-right: 5px;
 `;
 
 export const Logo = styled.img`
@@ -137,28 +202,51 @@ export const ButtonRow = styled.div`
   justify-content: center;
 `;
 
-export const CardContent = styled.p`
+export const CardPunch = styled.p`
+  color: #173947;
   font-size: 1.2rem;
   transition: 0.2s;
   margin: 0 auto;
 `;
+
+export const ShowPunch = styled.p`
+  color: #110061;
+  filter: brightness(90%);
+  font-size: 1rem;
+  transition: 0.2s;
+  margin: 0 auto;
+`;
+
+export const CardContent = styled.p`
+  font-size: 2rem;
+  transition: 0.2s;
+  margin: 0 auto;
+  padding-bottom: 14px;
+`;
+export const CardId = styled.p`
+  font-size: 0.9rem;
+  transition: 0.2s;
+  margin: 0 auto;
+  padding-bottom: 14px;
+`;
 export const Emphasized = styled.p`
-  font-size: 1.2rem;
+  font-size: 0.8 rem;
   font-style: italic;
+  filter: brightness(80%);
 `;
 
 export const TextBtn = styled.p`
   background: #537d91;
   filter: brightness(90%);
   border-radius: 3px;
-  padding: 2px;
+  padding: 5px;
   min-width: 50px;
   border: 1px solid black;
   margin: 0 10px;
   box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
   &:hover {
     cursor: pointer;
-    filter: brightness(105%);
+    filter: brightness(130%);
   }
   &:active {
     transform: translateY(1px);

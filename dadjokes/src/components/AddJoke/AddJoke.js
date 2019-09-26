@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { removePropertiesDeep } from "@babel/types";
-import { PageHeader } from "../../styles/globalStyles";
+import {
+  PageHeader,
+  Button,
+  PrivCheckbox,
+  EnterJoke,
+  CheckboxLabel
+} from "../../styles/globalStyles";
 const AddJoke = props => {
   const [addJoke, setAddJoke] = useState({});
   const [setupValue, setSetupValue] = useState("");
@@ -54,27 +60,29 @@ const AddJoke = props => {
     <div>
       <PageHeader>Add Joke</PageHeader>
       <form onSubmit={SubmitJoke}>
-        <input
+        <EnterJoke
           type="text"
           name="setup"
           placeholder="Setup"
           value={setupValue}
           onChange={handleChange}
         />
-        <input
+        <EnterJoke
           type="text"
           name="punchline"
           placeholder="Punchline"
           value={punchlineValue}
           onChange={handleChange}
         />
-        <label for="private">Private</label>
-        <input
-          type="checkbox"
-          name="private"
-          onChange={e => checkboxChanged(e)}
-        />
-        <button type="submit">Save</button>
+        <CheckboxLabel for="private">
+          <PrivCheckbox
+            type="checkbox"
+            name="private"
+            onChange={e => checkboxChanged(e)}
+          />
+          Private
+        </CheckboxLabel>
+        <Button type="submit">Save</Button>
       </form>
     </div>
   );
