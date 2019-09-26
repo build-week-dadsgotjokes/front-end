@@ -59,6 +59,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ma
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
+### Product Vision
+https://docs.google.com/document/d/1XBSyeTTWe8Pzk-BsMYLpZGZ7SwWq71dynKBYp3VH2V0/edit?usp=sharing
+
 ### Deployment
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
