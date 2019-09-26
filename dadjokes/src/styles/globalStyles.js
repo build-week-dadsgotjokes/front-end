@@ -198,16 +198,22 @@ export const CardPunch = styled.p`
   margin: 0 auto;
   `;
 
-  export const ShowPunch = styled.p`
+export const ShowPunch = styled.p`
   color:  #110061;
   filter: brightness(90%);
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   transition: 0.2s;
   margin: 0 auto;
   `;
   
-  export const CardContent = styled.p`
-  font-size: 1.2rem;
+export const CardContent = styled.p`
+  font-size: 1.4rem;
+  transition: 0.2s;
+  margin: 0 auto;
+  padding-bottom: 14px;
+`;
+export const CardId = styled.p`
+  font-size: 0.8rem;
   transition: 0.2s;
   margin: 0 auto;
   padding-bottom: 14px;

@@ -9,7 +9,8 @@ import {
   ButtonRow,
   TextBtn,
   CardPunch,
-  ShowPunch
+  ShowPunch,
+  CardId
 } from "../../../styles/globalStyles";
 
 const AddJoke = props => {
@@ -65,7 +66,7 @@ const AddJoke = props => {
   return (
     <CardContainer className="joke">
       <CardInfo>
-        <CardContent>#{props.id}</CardContent>
+        <CardId>#{props.id}</CardId>
         <CardContent>{props.setup}</CardContent>
         {show ? (
           <CardPunch onClick={() => setShow(false)}>
