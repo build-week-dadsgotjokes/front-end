@@ -66,29 +66,18 @@ const JokeList = props => {
         <input onChange={e => handleInput(e.target.value)} value={input} />
         <button>Search</button>
       </form>
-      <Table>
-        <thead>
-          <tr>
-            <th>Setup</th>
-            <th>Punchline</th>
-            <th>Username</th>
-          </tr>
-        </thead>
 
-        {display.map(joke => {
-          return (
-            <tbody>
-              <Joke
-                id={joke.id}
-                key={joke.id}
-                setup={joke.setup}
-                punchline={joke.punchline}
-                user={joke.owner.username}
-              />
-            </tbody>
-          );
-        })}
-      </Table>
+      {display.map(joke => {
+        return (
+          <Joke
+            id={joke.id}
+            key={joke.id}
+            setup={joke.setup}
+            punchline={joke.punchline}
+            user={joke.owner.username}
+          />
+        );
+      })}
     </div>
   );
 };

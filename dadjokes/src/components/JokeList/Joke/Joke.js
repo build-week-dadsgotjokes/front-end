@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Joke.css";
-import styled from "styled-components";
 import axios from "axios";
-
-const Body = styled.tr`
-  min-width: 100%;
-  padding: 30vh;
-`;
+import {
+  CardContainer,
+  CardContent,
+  Emphasized,
+  CardInfo,
+  ButtonRow,
+  TextBtn
+} from "../../../styles/globalStyles";
 
 const AddJoke = props => {
   const [editing, setEditing] = useState(false);
@@ -16,6 +18,7 @@ const AddJoke = props => {
     id: props.id,
     isprivate: false
   });
+  const [show, setShow] = useState(false);
 
   const deleteJoke = () => {
     const token = localStorage.getItem("token");
@@ -58,14 +61,32 @@ const AddJoke = props => {
   };
 
   return (
-    <Body className="joke">
-      <th>{props.setup}</th>
-      <th>{props.punchline}</th>
-      <th>{props.user}</th>
-      <p onClick={deleteJoke}>Delete</p>
-      {!editing ? (
-        <p onClick={() => setEditing(!editing)}>Edit</p>
+    <CardContainer className="joke">
+      <CardInfo>
+        <CardContent>#{props.id}</CardContent>
+        <CardContent>{props.setup}</CardContent>
+        {show ? (
+          <CardContent onClick={() => setShow(false)}>
+            {props.punchline}
+          </CardContent>
+        ) : (
+          <CardContent onClick={() => setShow(true)}>
+            Show Punchline
+          </CardContent>
+        )}
+        <Emphasized>By: {props.user}</Emphasized>
+      </CardInfo>
+      {localStorage.getItem("token") ? (
+        <ButtonRow>
+          {!editing ? <TextBtn onClick={deleteJoke}>Delete</TextBtn> : <></>}
+          <TextBtn onClick={() => setEditing(!editing)}>
+            {!editing ? "Edit" : "Cancel"}
+          </TextBtn>
+        </ButtonRow>
       ) : (
+        <></>
+      )}
+      {editing ? (
         <div>
           <form onSubmit={editJoke}>
             <input
@@ -82,16 +103,15 @@ const AddJoke = props => {
               value={joke.punchline}
               onChange={handleChange}
             />
-            <label for="public">Public</label>
-            <input type="checkbox" name="public" />
             <label for="private">Private</label>
             <input type="checkbox" name="private" />
-            <p onClick={() => setEditing(!editing)}>Cancel</p>
             <button>save</button>
           </form>
         </div>
+      ) : (
+        <></>
       )}
-    </Body>
+    </CardContainer>
   );
 };
 

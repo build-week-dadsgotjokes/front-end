@@ -102,3 +102,40 @@ export const Logo = styled.img`
   height: 45px;
   margin-left: 15px;
 `;
+
+export const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  border: 1px solid black;
+  margin: 10px auto;
+  padding: 2%;
+  border-radius: 10px;
+`;
+
+export const CardInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ButtonRow = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const CardContent = styled.p`
+  font-size: 1.2rem;
+  transition: 0.2s;
+`;
+export const Emphasized = styled.p`
+  font-size: 1.2rem;
+  font-style: italic;
+`;
+
+export const TextBtn = styled.p`
+  border-radius: 3px;
+  padding: 2px;
+  min-width: 50px;
+  border: 1px solid black;
+  margin: 0 10px;
+`;
