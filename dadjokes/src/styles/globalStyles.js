@@ -74,6 +74,53 @@ export const PageHeader = styled.h2`
   margin: 2% auto;
 `;
 
+export const SaveJoke = styled.button`
+  background: #537d91;
+  border: 1px solid black;
+  border-radius: 3px
+  color: white;
+  filter: brightness(90%);
+  padding: 2px;
+  min-width: 50px;
+  margin: 10px 10px;
+  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+  &:hover {
+    cursor: ponter;
+    filter: brightness(105%);
+  }
+  &:activate {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.7);
+  }
+`;
+
+export const EnterJoke = styled.input`
+  border-radius: 3px;
+  border: 1px solid black;
+  background: lightgrey;
+  filter: brightness(110%);
+  padding: 5px;
+  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+`;
+
+export const PrivCheckbox = styled.label`
+  border: 1px red;
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 10px;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+  &:hover {
+    cursor: pointer;
+    filter: brightness(60%);
+    background-color: solid black;
+  }
+`;
+
 export const SignIn = styled.div`
   width: 40%;
   height: 93vh;
