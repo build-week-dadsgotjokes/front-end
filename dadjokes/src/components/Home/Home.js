@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
 import styled from "styled-components";
-
-const Greeting = styled.div`
-background: #4FB5C8
-color: #173947
-`;
+import { Greeting, Button } from "../../styles/globalStyles";
 
 const Home = props => {
   const [newUser, setNewUser] = useState(true);
@@ -24,9 +20,9 @@ const Home = props => {
       ) : (
         <Login history={props.history} />
       )}
-      <button onClick={toggleUserStatus}>
+      <Button onClick={toggleUserStatus}>
         {newUser ? "Already Have an Account?" : "Don't have an account?"}
-      </button>
+      </Button>
     </Greeting>
   );
 };

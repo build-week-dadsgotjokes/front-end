@@ -1,22 +1,16 @@
 import React from "react";
-import SearchBar from "./SearchBar/SearchBar";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-const Nav = styled.div`
-  background: #e56166;
-`;
+import { NavContainer, NavLink } from "../../styles/globalStyles";
 
 const NavBar = () => {
   return (
-    <Nav>
-      <h1>Hi Hungry, I'm Dad</h1>
-      <Link to="/">Home</Link>
-      <Link to="/jokes">Jokes</Link>
-      <Link to="/profile">{localStorage.getItem('token') ? 'Profile' : 'Log In'}</Link>
-    </Nav>
+    <NavContainer>
+      <NavLink href="/">Home</NavLink>
+      <NavLink href="/jokes">Jokes</NavLink>
+      <NavLink href="/profile">
+        {localStorage.getItem("token") ? "Profile" : "Log In"}
+      </NavLink>
+    </NavContainer>
   );
 };
 
 export default NavBar;
-

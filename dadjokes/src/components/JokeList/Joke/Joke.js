@@ -16,11 +16,6 @@ const AddJoke = props => {
     id: props.id,
     isprivate: false
   });
-  const [flag, setFlag] = useState(false);
-
-  useEffect(() => {
-    console.log("editing");
-  }, [editing]);
 
   const deleteJoke = () => {
     const token = localStorage.getItem("token");
