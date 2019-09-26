@@ -75,7 +75,11 @@ export const PageHeader = styled.h2`
 `;
 
 export const SaveJoke = styled.button`
-  background: #537d91 
+  background: #537d91;
+  border: 1px solid black;
+  border-radius: 3px
+  color: white;
+  filter: brightness(90%);
 `;
 
 export const SignIn = styled.div`
