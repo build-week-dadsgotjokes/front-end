@@ -7,14 +7,17 @@ import JokeList from "./components/JokeList/JokeList";
 import SignUp from "./components/SignUp/SignUp";
 import PrivateRoute from "./utils/PrivateRoute";
 import Home from "./components/Home/Home";
+import { JokeProvider } from "./contexts/JokeContext";
 
 function App() {
   return (
     <div className="App">
-      <Route path="/" component={NavBar} />
-      <Route exact path="/" component={Home} />
+      <JokeProvider>
+        <Route path="/" component={NavBar} />
+        <Route path="/jokes" component={JokeList} />
+      </JokeProvider>
       <PrivateRoute path="/profile" component={Profile} />
-      <Route path="/jokes" component={JokeList} />
+      <Route exact path="/" component={Home} />
       <Route path="/signup" component={SignUp} />
     </div>
   );

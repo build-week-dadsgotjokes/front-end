@@ -8,7 +8,6 @@ const AddJoke = props => {
   const [punchlineValue, setPunchlineValue] = useState("");
   const [isprivate, setIsprivate] = useState(false);
 
-  console.log(window.location.href);
   const handleChange = effect => {
     setAddJoke({
       ...addJoke,

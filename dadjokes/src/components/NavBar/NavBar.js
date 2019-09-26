@@ -7,6 +7,9 @@ import {
   Logo
 } from "../../styles/globalStyles";
 
+import SearchBar from "../../components/NavBar/SearchBar/SearchBar";
+import { JokeProvider } from "../../contexts/JokeContext";
+
 const NavBar = () => {
   const logout = e => {
     localStorage.clear();
