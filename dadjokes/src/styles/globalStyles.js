@@ -197,8 +197,9 @@ export const CardContent = styled.p`
   margin: 0 auto;
 `;
 export const Emphasized = styled.p`
-  font-size: 1.2rem;
+  font-size: 0.8 rem;
   font-style: italic;
+  filter: brightness(80%);
 `;
 
 export const TextBtn = styled.p`
