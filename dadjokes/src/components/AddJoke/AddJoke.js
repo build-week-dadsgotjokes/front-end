@@ -5,7 +5,8 @@ import {
   PageHeader,
   SaveJoke,
   PrivCheckbox,
-  EnterJoke
+  EnterJoke,
+  CheckboxLabel
 } from "../../styles/globalStyles";
 const AddJoke = props => {
   const [addJoke, setAddJoke] = useState({});
@@ -74,14 +75,14 @@ const AddJoke = props => {
           value={punchlineValue}
           onChange={handleChange}
         />
-        <label for="private">
+        <CheckboxLabel for="private">
           <PrivCheckbox
             type="checkbox"
             name="private"
             onChange={e => checkboxChanged(e)}
           />
           Private
-        </label>
+        </CheckboxLabel>
         <SaveJoke type="submit">Save</SaveJoke>
       </form>
     </div>

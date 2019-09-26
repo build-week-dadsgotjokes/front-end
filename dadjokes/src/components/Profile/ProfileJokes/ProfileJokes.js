@@ -59,17 +59,26 @@ const ProfileJokes = () => {
       </ProfileInfo>
       <ProfileJokeContainer>
         <ScrollJokes>
-          {jokes.map(joke => {
-            return (
-              <Joke
-                id={joke.id}
-                key={joke.id}
-                setup={joke.setup}
-                punchline={joke.punchline}
-                user={username}
-              />
-            );
-          })}
+          {jokes.length === 0 ? (
+            <div>
+              <h3>You haven't created any jokes!</h3>
+              <p>
+                <em>Jokes you create will display here</em>
+              </p>
+            </div>
+          ) : (
+            jokes.map(joke => {
+              return (
+                <Joke
+                  id={joke.id}
+                  key={joke.id}
+                  setup={joke.setup}
+                  punchline={joke.punchline}
+                  user={username}
+                />
+              );
+            })
+          )}
         </ScrollJokes>
       </ProfileJokeContainer>
     </ProfileDiv>

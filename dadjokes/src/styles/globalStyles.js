@@ -140,6 +140,11 @@ export const SignInForm = styled.form`
   flex-flow: column wrap;
 `;
 
+export const CheckboxLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const Input = styled.input.attrs(props => ({
   type: props.type,
   placeholder: props.placeholder || "Input Information"
