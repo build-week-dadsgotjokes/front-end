@@ -80,6 +80,18 @@ export const SaveJoke = styled.button`
   border-radius: 3px
   color: white;
   filter: brightness(90%);
+  padding: 2px;
+  min-width: 50px;
+  margin: 10px 10px;
+  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+  &:hover {
+    cursor: ponter;
+    filter: brightness(105%);
+  }
+  &:activate {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.7);
+  }
 `;
 
 export const SignIn = styled.div`
