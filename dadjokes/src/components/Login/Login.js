@@ -2,23 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useInput } from "../../hooks/useInput";
 
 const SignInDiv = styled.div`
   background: #4fb5c8;
 `;
 
 const SignIn = props => {
-  const [user, setUser] = useState({});
+  const [username, setUsername, handleUsername] = useInput("");
+  const [password, setPassword, handlePassword] = useInput("");
 
-  const handleChanges = e => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
   const handleSubmit = e => {
     e.preventDefault();
     axios
       .post(
         "https://api-dadjokes.herokuapp.com/login",
-        `grant_type=password&username=${user.username}&password=${user.password}`,
+        `grant_type=password&username=${username}&password=${password}`,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -44,7 +43,8 @@ const SignIn = props => {
           type="text"
           placeholder="username"
           name="username"
-          onChange={e => handleChanges(e)}
+          onChange={e => handleUsername(e.target.value)}
+          value={username}
         />
 
         <input
@@ -52,7 +52,8 @@ const SignIn = props => {
           type="password"
           placeholder="password"
           name="password"
-          onChange={e => handleChanges(e)}
+          onChange={e => handlePassword(e.target.value)}
+          value={password}
         />
         <button>Sign in</button>
       </form>
