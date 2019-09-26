@@ -191,10 +191,26 @@ export const ButtonRow = styled.div`
   justify-content: center;
 `;
 
-export const CardContent = styled.p`
+export const CardPunch = styled.p`
+  color: #173947;
   font-size: 1.2rem;
   transition: 0.2s;
   margin: 0 auto;
+  `;
+
+  export const ShowPunch = styled.p`
+  color:  #110061;
+  filter: brightness(90%);
+  font-size: 1.2rem;
+  transition: 0.2s;
+  margin: 0 auto;
+  `;
+  
+  export const CardContent = styled.p`
+  font-size: 1.2rem;
+  transition: 0.2s;
+  margin: 0 auto;
+  padding-bottom: 14px;
 `;
 export const Emphasized = styled.p`
   font-size: 0.8 rem;

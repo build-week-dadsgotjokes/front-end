@@ -7,7 +7,9 @@ import {
   Emphasized,
   CardInfo,
   ButtonRow,
-  TextBtn
+  TextBtn,
+  CardPunch,
+  ShowPunch
 } from "../../../styles/globalStyles";
 
 const AddJoke = props => {
@@ -66,13 +68,13 @@ const AddJoke = props => {
         <CardContent>#{props.id}</CardContent>
         <CardContent>{props.setup}</CardContent>
         {show ? (
-          <CardContent onClick={() => setShow(false)}>
+          <CardPunch onClick={() => setShow(false)}>
             {props.punchline}
-          </CardContent>
+          </CardPunch>
         ) : (
-          <CardContent onClick={() => setShow(true)}>
+          <ShowPunch onClick={() => setShow(true)}>
             Show Punchline
-          </CardContent>
+          </ShowPunch>
         )}
         <Emphasized>By: {props.user}</Emphasized>
       </CardInfo>
