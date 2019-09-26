@@ -106,12 +106,10 @@ export const EnterJoke = styled.input`
 `;
 
 export const PrivCheckbox = styled.input`
-  border: 1px red;
   display: block;
   position: relative;
-  top: 0;
-  left: 0;
-  right: 10px;
+  // filter: brightness(100%);
+  background: #f77754;
   height: 25px;
   width: 25px;
   cursor: pointer;
@@ -120,7 +118,7 @@ export const PrivCheckbox = styled.input`
   &:hover {
     cursor: pointer;
     filter: brightness(60%);
-    background-color: solid black;
+    background: #f77754;
   }
 `;
 
@@ -204,14 +202,37 @@ export const ButtonRow = styled.div`
   justify-content: center;
 `;
 
-export const CardContent = styled.p`
+export const CardPunch = styled.p`
+  color: #173947;
   font-size: 1.2rem;
   transition: 0.2s;
   margin: 0 auto;
 `;
+
+export const ShowPunch = styled.p`
+  color: #110061;
+  filter: brightness(90%);
+  font-size: 1rem;
+  transition: 0.2s;
+  margin: 0 auto;
+`;
+
+export const CardContent = styled.p`
+  font-size: 2rem;
+  transition: 0.2s;
+  margin: 0 auto;
+  padding-bottom: 14px;
+`;
+export const CardId = styled.p`
+  font-size: 0.9rem;
+  transition: 0.2s;
+  margin: 0 auto;
+  padding-bottom: 14px;
+`;
 export const Emphasized = styled.p`
-  font-size: 1.2rem;
+  font-size: 0.8 rem;
   font-style: italic;
+  filter: brightness(80%);
 `;
 
 export const TextBtn = styled.p`

@@ -12,7 +12,10 @@ import {
   CheckboxLabel,
   Input,
   FlexRow,
-  Button
+  Button,
+  CardPunch,
+  ShowPunch,
+  CardId
 } from "../../../styles/globalStyles";
 
 const AddJoke = props => {
@@ -72,16 +75,14 @@ const AddJoke = props => {
   return (
     <CardContainer className="joke">
       <CardInfo>
-        <CardContent>#{props.id}</CardContent>
+        <CardId>#{props.id}</CardId>
         <CardContent>{props.setup}</CardContent>
         {show ? (
-          <CardContent onClick={() => setShow(false)}>
+          <CardPunch onClick={() => setShow(false)}>
             {props.punchline}
-          </CardContent>
+          </CardPunch>
         ) : (
-          <CardContent onClick={() => setShow(true)}>
-            Show Punchline
-          </CardContent>
+          <ShowPunch onClick={() => setShow(true)}>Show Punchline</ShowPunch>
         )}
         <Emphasized>By: {props.user}</Emphasized>
       </CardInfo>
