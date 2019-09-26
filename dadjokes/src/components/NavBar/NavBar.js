@@ -13,11 +13,10 @@ const NavBar = () => {
       <h1>Hi Hungry, I'm Dad</h1>
       <Link to="/">Home</Link>
       <Link to="/jokes">Jokes</Link>
-      <Link to="/profile">Right Here</Link>
+      <Link to="/profile">{localStorage.getItem('token') ? 'Profile' : 'Log In'}</Link>
     </Nav>
   );
 };
 
 export default NavBar;
 
-//{localStorage.getItem('token') ? 'Profile' : 'Log In'}
