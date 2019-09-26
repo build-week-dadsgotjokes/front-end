@@ -207,13 +207,13 @@ export const ShowPunch = styled.p`
   `;
   
 export const CardContent = styled.p`
-  font-size: 1.4rem;
+  font-size: 2.0rem;
   transition: 0.2s;
   margin: 0 auto;
   padding-bottom: 14px;
 `;
 export const CardId = styled.p`
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   transition: 0.2s;
   margin: 0 auto;
   padding-bottom: 14px;
