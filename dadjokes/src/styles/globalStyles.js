@@ -74,6 +74,10 @@ export const PageHeader = styled.h2`
   margin: 2% auto;
 `;
 
+export const SaveJoke = styled.button`
+  background: #537d91 
+`;
+
 export const SignIn = styled.div`
   width: 40%;
   height: 93vh;
