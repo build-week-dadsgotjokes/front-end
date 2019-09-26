@@ -3,17 +3,15 @@ import axios from "axios";
 import Joke from "../../JokeList/Joke/Joke";
 import AddJoke from "../../AddJoke/AddJoke";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import {
+  ProfileJokeContainer,
+  ScrollJokes,
+  ProfileDiv,
+  ProfileInfo,
+  CardContainer
+} from "../../../styles/globalStyles";
 
-const Table = styled.table`
-  width: 100%;
-`;
-
-const Head = styled.tr``;
-
-const Body = styled.tr``;
-
-function ProfileJokes() {
+const ProfileJokes = () => {
   const [jokes, setJokes] = useState([]);
   const [username, setUsername] = useState("");
 
@@ -51,35 +49,18 @@ function ProfileJokes() {
 
   console.log(jokes);
 
-  const userLoggedIn = () => {
-    return (
-      <div>
-        <h2>{`Hello, ${username}`}</h2>
-        <AddJoke />
-      </div>
-    );
-  };
-
   return (
-    <div>
-      {localStorage.getItem("token") ? (
-        userLoggedIn()
-      ) : (
-        <h2>Hi Hungry, I'm Dad</h2>
-      )}
-
-      <Table>
-        <thead>
-          <Body>
-            <th>Setup</th>
-            <th>Punchline</th>
-            <th>Username</th>
-          </Body>
-        </thead>
-
-        {jokes.map(joke => {
-          return (
-            <tbody>
+    <ProfileDiv>
+      <ProfileInfo>
+        <h2>{`Hello, ${username}`}</h2>
+        <CardContainer>
+          <AddJoke />
+        </CardContainer>
+      </ProfileInfo>
+      <ProfileJokeContainer>
+        <ScrollJokes>
+          {jokes.map(joke => {
+            return (
               <Joke
                 id={joke.id}
                 key={joke.id}
@@ -87,12 +68,12 @@ function ProfileJokes() {
                 punchline={joke.punchline}
                 user={username}
               />
-            </tbody>
-          );
-        })}
-      </Table>
-    </div>
+            );
+          })}
+        </ScrollJokes>
+      </ProfileJokeContainer>
+    </ProfileDiv>
   );
-}
+};
 
 export default ProfileJokes;

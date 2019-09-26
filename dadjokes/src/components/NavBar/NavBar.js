@@ -1,22 +1,43 @@
 import React from "react";
-import SearchBar from "./SearchBar/SearchBar";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-const Nav = styled.div`
-  background: #e56166;
-`;
+import {
+  NavContainer,
+  NavLinkContainer,
+  NavLink,
+  LogoContainer,
+  Logo
+} from "../../styles/globalStyles";
 
 const NavBar = () => {
+  const logout = e => {
+    localStorage.clear();
+    window.location.href = "/";
+  };
+
   return (
-    <Nav>
-      <h1>Hi Hungry, I'm Dad</h1>
-      <Link to="/">Home</Link>
-      <Link to="/jokes">Jokes</Link>
-      <Link to="/profile">{localStorage.getItem('token') ? 'Profile' : 'Log In'}</Link>
-    </Nav>
+    <NavContainer>
+      <LogoContainer>
+        <Logo src="https://cdn2.bigcommerce.com/server1700/01wp0ckw/products/2548/images/7569/Dads_002__24151.1496974722.500.500.png?c=2" />
+      </LogoContainer>
+      <NavLinkContainer>
+        <NavLink href="/jokes">Jokes</NavLink>
+        <NavLink href="/">
+          {localStorage.getItem("token") ? "Profile" : "Log In"}
+        </NavLink>
+
+        {localStorage.getItem("token") ? (
+          <NavLink
+            onClick={e => {
+              logout(e);
+            }}
+          >
+            Log Out
+          </NavLink>
+        ) : (
+          <></>
+        )}
+      </NavLinkContainer>
+    </NavContainer>
   );
 };
 
 export default NavBar;
-

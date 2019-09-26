@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { removePropertiesDeep } from "@babel/types";
-
+import { PageHeader } from "../../styles/globalStyles";
 const AddJoke = props => {
   const [addJoke, setAddJoke] = useState({});
   const [setupValue, setSetupValue] = useState("");
   const [punchlineValue, setPunchlineValue] = useState("");
   const [isprivate, setIsprivate] = useState(false);
 
+  console.log(window.location.href);
   const handleChange = effect => {
     setAddJoke({
       ...addJoke,
@@ -52,6 +53,7 @@ const AddJoke = props => {
 
   return (
     <div>
+      <PageHeader>Add Joke</PageHeader>
       <form onSubmit={SubmitJoke}>
         <input
           type="text"

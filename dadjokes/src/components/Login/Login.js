@@ -2,23 +2,24 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useInput } from "../../hooks/useInput";
+import {
+  PageHeader,
+  Button,
+  Input,
+  SignInForm
+} from "../../styles/globalStyles";
 
-const SignInDiv = styled.div`
-  background: #4fb5c8;
-`;
+const Login = props => {
+  const [username, setUsername, handleUsername] = useInput("");
+  const [password, setPassword, handlePassword] = useInput("");
 
-const SignIn = props => {
-  const [user, setUser] = useState({});
-
-  const handleChanges = e => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
   const handleSubmit = e => {
     e.preventDefault();
     axios
       .post(
         "https://api-dadjokes.herokuapp.com/login",
-        `grant_type=password&username=${user.username}&password=${user.password}`,
+        `grant_type=password&username=${username}&password=${password}`,
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -36,27 +37,29 @@ const SignIn = props => {
   };
 
   return (
-    <SignInDiv className="signInDiv">
-      <h2>Welcome back</h2>
-      <form onSubmit={e => handleSubmit(e)}>
-        <input
+    <div className="signInDiv">
+      <PageHeader>Welcome back</PageHeader>
+      <SignInForm onSubmit={e => handleSubmit(e)}>
+        <Input
           className="default"
           type="text"
           placeholder="username"
           name="username"
-          onChange={e => handleChanges(e)}
+          onChange={e => handleUsername(e.target.value)}
+          value={username}
         />
 
-        <input
+        <Input
           className="default"
           type="password"
           placeholder="password"
           name="password"
-          onChange={e => handleChanges(e)}
+          onChange={e => handlePassword(e.target.value)}
+          value={password}
         />
-        <button>Sign in</button>
-      </form>
-    </SignInDiv>
+        <Button>Sign in</Button>
+      </SignInForm>
+    </div>
   );
 };
-export default SignIn;
+export default Login;

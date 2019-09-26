@@ -1,20 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ProfileJokes from "../Profile/ProfileJokes/ProfileJokes";
-
+import { Body, ProfileBackground } from "../../styles/globalStyles";
 const Profile = props => {
-  console.log(props);
-  const logout = e => {
-    e.preventDefault();
-    localStorage.clear();
-    window.location.href = "/";
-  };
-
   return (
-    <div>
-      <button onClick={logout}>Logout</button>
+    <ProfileBackground>
       <ProfileJokes />
-    </div>
+    </ProfileBackground>
   );
 };
 
