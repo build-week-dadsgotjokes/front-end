@@ -6,7 +6,12 @@ import styled from "styled-components";
 import SearchBar from "../NavBar/SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { useInput } from "../../hooks/useInput";
-import { Body, AddJokeMain } from "../../styles/globalStyles";
+import {
+  Body,
+  AddJokeMain,
+  SearchInput,
+  Button
+} from "../../styles/globalStyles";
 
 const JokeList = props => {
   const [jokes, setJokes] = useState([]);
@@ -54,15 +59,18 @@ const JokeList = props => {
 
   return (
     <Body>
+      <form onSubmit={e => submitHandler(e)}>
+        <SearchInput
+          onChange={e => handleInput(e.target.value)}
+          value={input}
+        />
+        <Button>Search</Button>
+      </form>
       {localStorage.getItem("token") ? (
         userLoggedIn()
       ) : (
         <h2>Hi Hungry, I'm Dad</h2>
       )}
-      <form onSubmit={e => submitHandler(e)}>
-        <input onChange={e => handleInput(e.target.value)} value={input} />
-        <button>Search</button>
-      </form>
 
       {display.map(joke => {
         return (

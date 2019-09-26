@@ -103,7 +103,7 @@ export const EnterJoke = styled.input`
   box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
 `;
 
-export const PrivCheckbox = styled.label`
+export const PrivCheckbox = styled.input`
   border: 1px red;
   display: block;
   position: relative;
@@ -149,6 +149,11 @@ export const Input = styled.input.attrs(props => ({
   padding: 5px;
   width: 60%;
   margin: 10px auto;
+`;
+
+export const SearchInput = styled(Input)`
+  width: 200px;
+  margin-right: 5px;
 `;
 
 export const Logo = styled.img`
