@@ -16,6 +16,11 @@ export const Greeting = styled.div`
   padding: 0;
 `;
 
+export const ProfileBackground = styled(Greeting)`
+  background-position: center;
+  display: block;
+`;
+
 export const Button = styled.button`
   background: #537d91;
   color: white;
@@ -64,7 +69,7 @@ export const NavLink = styled.a`
 `;
 
 export const PageHeader = styled.h2`
-  margin: 12% auto 2%;
+  margin: 2% auto;
 `;
 
 export const SignIn = styled.div`
@@ -106,13 +111,18 @@ export const Logo = styled.img`
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 35%;
+  min-width: 360px;
   border: 1px solid black;
   margin: 10px auto;
   padding: 2%;
   border-radius: 10px;
   background: #537d91;
   color: white;
+`;
+
+export const AddJokeMain = styled(CardContainer)`
+  width: 25%;
 `;
 
 export const CardInfo = styled.div`
@@ -163,7 +173,7 @@ export const Body = styled.div`
 export const ProfileJokeContainer = styled.div`
   float: left;
   height: 350px;
-  width: 40%;
+  width: 450px;
   background: #f77754;
   filter: brightness(85%);
 `;
@@ -171,4 +181,14 @@ export const ProfileJokeContainer = styled.div`
 export const ScrollJokes = styled.div`
   height: 320px;
   overflow: auto;
+`;
+
+export const ProfileDiv = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+`;
+
+export const ProfileInfo = styled.div`
+  margin: 0% auto;
 `;

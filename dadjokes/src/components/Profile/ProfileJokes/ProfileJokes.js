@@ -5,7 +5,10 @@ import AddJoke from "../../AddJoke/AddJoke";
 import { Link } from "react-router-dom";
 import {
   ProfileJokeContainer,
-  ScrollJokes
+  ScrollJokes,
+  ProfileDiv,
+  ProfileInfo,
+  CardContainer
 } from "../../../styles/globalStyles";
 
 const ProfileJokes = () => {
@@ -46,22 +49,14 @@ const ProfileJokes = () => {
 
   console.log(jokes);
 
-  const userLoggedIn = () => {
-    return (
-      <div>
-        <h2>{`Hello, ${username}`}</h2>
-        <AddJoke />
-      </div>
-    );
-  };
-
   return (
-    <div>
-      {localStorage.getItem("token") ? (
-        userLoggedIn()
-      ) : (
-        <h2>Hi Hungry, I'm Dad</h2>
-      )}
+    <ProfileDiv>
+      <ProfileInfo>
+        <h2>{`Hello, ${username}`}</h2>
+        <CardContainer>
+          <AddJoke />
+        </CardContainer>
+      </ProfileInfo>
       <ProfileJokeContainer>
         <ScrollJokes>
           {jokes.map(joke => {
@@ -77,7 +72,7 @@ const ProfileJokes = () => {
           })}
         </ScrollJokes>
       </ProfileJokeContainer>
-    </div>
+    </ProfileDiv>
   );
 };
 

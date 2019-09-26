@@ -6,11 +6,7 @@ import styled from "styled-components";
 import SearchBar from "../NavBar/SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { useInput } from "../../hooks/useInput";
-import { Body } from "../../styles/globalStyles";
-
-const Table = styled.table`
-  width: 100%;
-`;
+import { Body, AddJokeMain } from "../../styles/globalStyles";
 
 const JokeList = props => {
   const [jokes, setJokes] = useState([]);
@@ -50,9 +46,9 @@ const JokeList = props => {
   ///renders link to profile and addJoke form if user is logged in
   const userLoggedIn = () => {
     return (
-      <div>
+      <AddJokeMain>
         <AddJoke history={props.history} />
-      </div>
+      </AddJokeMain>
     );
   };
 

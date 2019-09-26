@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { removePropertiesDeep } from "@babel/types";
-
+import { PageHeader } from "../../styles/globalStyles";
 const AddJoke = props => {
   const [addJoke, setAddJoke] = useState({});
   const [setupValue, setSetupValue] = useState("");
@@ -52,6 +52,7 @@ const AddJoke = props => {
 
   return (
     <div>
+      <PageHeader>Add Joke</PageHeader>
       <form onSubmit={SubmitJoke}>
         <input
           type="text"
