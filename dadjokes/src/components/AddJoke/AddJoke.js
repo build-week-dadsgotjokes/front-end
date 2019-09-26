@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { removePropertiesDeep } from "@babel/types";
-import { PageHeader, SaveJoke, PrivCheckbox } from "../../styles/globalStyles";
+import { PageHeader, SaveJoke, PrivCheckbox, EnterJoke } from "../../styles/globalStyles";
 const AddJoke = props => {
   const [addJoke, setAddJoke] = useState({});
   const [setupValue, setSetupValue] = useState("");
@@ -55,21 +55,21 @@ const AddJoke = props => {
     <div>
       <PageHeader>Add Joke</PageHeader>
       <form onSubmit={SubmitJoke}>
-        <input
+        <EnterJoke
           type="text"
           name="setup"
           placeholder="Setup"
           value={setupValue}
           onChange={handleChange}
         />
-        <input
+        <EnterJoke
           type="text"
           name="punchline"
           placeholder="Punchline"
           value={punchlineValue}
           onChange={handleChange}
         />
-        <label className="PrivCheckbox" for="private">Private</label>
+        <PrivCheckbox className="PrivCheckbox" for="private">Private</PrivCheckbox>
         <input
           type="checkbox"
           name="private"

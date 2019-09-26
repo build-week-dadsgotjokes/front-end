@@ -94,6 +94,14 @@ export const SaveJoke = styled.button`
   }
 `;
 
+export const EnterJoke = styled.input`
+  border-radius: 3px;
+  border: 1px solid black;
+  background: lightgrey;
+  filter: brightness(110%);
+  padding: 5px;
+`;
+
 export const PrivCheckbox = styled.label`
   border: 1px red;
   display: block;
@@ -104,7 +112,7 @@ export const PrivCheckbox = styled.label`
   width: 25px;
   background: #537d91;
   cursor: pointer;
-  input[type-checkbox] {
+  input[type=checkbox] {
     visibility: hidden;
   }
 `;
