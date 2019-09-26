@@ -104,21 +104,18 @@ export const EnterJoke = styled.input`
 `;
 
 export const PrivCheckbox = styled.input`
-  border: 1px red;
   display: block;
   position: relative;
-  top: 0;
-  left: 0;
-  right: 10px;
+  // filter: brightness(100%);
+  background: #f77754;
   height: 25px;
   width: 25px;
   cursor: pointer;
-  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
   &:hover {
     cursor: pointer;
     filter: brightness(60%);
-    background-color: solid black;
-  }
+    background: #f77754;
+  };
 `;
 
 export const SignIn = styled.div`
