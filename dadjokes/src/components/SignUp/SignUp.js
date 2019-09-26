@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { useInput } from "../../hooks/useInput";
 
 const SignUpDiv = styled.div`
 background: #4FB5C8,
@@ -14,16 +15,13 @@ background: #E56166
 `;
 
 const SignUp = props => {
-  const [newUser, setNewUser] = useState({});
+  const [username, setUsername, handleUsername] = useInput("");
+  const [password, setPassword, handlePassword] = useInput("");
+  const [confirm, setConfirm, handleConfirm] = useInput("");
 
-  const handleChanges = e => {
-    setNewUser({ ...newUser, [e.target.name]: e.target.value });
-  };
   const handleSubmit = e => {
-    const password = newUser.password;
-    const username = newUser.username;
     e.preventDefault();
-    if (password === newUser.confirm) {
+    if (password === confirm) {
       axios
         .post(
           "https://api-dadjokes.herokuapp.com/createnewuser",
@@ -72,7 +70,8 @@ const SignUp = props => {
           type="text"
           placeholder="username"
           name="username"
-          onChange={e => handleChanges(e)}
+          onChange={e => handleUsername(e.target.value)}
+          value={username}
         />
 
         <input
@@ -80,7 +79,8 @@ const SignUp = props => {
           type="password"
           placeholder="password"
           name="password"
-          onChange={e => handleChanges(e)}
+          onChange={e => handlePassword(e.target.value)}
+          value={password}
         />
 
         <input
@@ -88,7 +88,8 @@ const SignUp = props => {
           type="password"
           placeholder="confirm password"
           name="confirm"
-          onChange={e => handleChanges(e)}
+          onChange={e => handleConfirm(e.target.value)}
+          value={confirm}
         />
 
         <SubButton>Submit</SubButton>
