@@ -7,7 +7,12 @@ import {
   Emphasized,
   CardInfo,
   ButtonRow,
-  TextBtn
+  TextBtn,
+  PrivCheckbox,
+  CheckboxLabel,
+  Input,
+  FlexRow,
+  Button
 } from "../../../styles/globalStyles";
 
 const AddJoke = props => {
@@ -27,10 +32,14 @@ const AddJoke = props => {
         `https://api-dadjokes.herokuapp.com/jokes/auth/delete/${joke.id}`,
         {
           headers: {
-            Authorization: "Bearer" + token
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
           }
         }
       )
+
+      .then(res => console.log(res))
+      .then(res => (window.location.href = "/jokes"))
       .catch(err => console.log(err));
   };
 
@@ -89,23 +98,27 @@ const AddJoke = props => {
       {editing ? (
         <div>
           <form onSubmit={editJoke}>
-            <input
+            <Input
               type="text"
               name="setup"
               placeholder="Setup"
               value={joke.setup}
               onChange={handleChange}
             />
-            <input
+            <Input
               type="text"
               name="punchline"
               placeholder="Punchline"
               value={joke.punchline}
               onChange={handleChange}
             />
-            <label for="private">Private</label>
-            <input type="checkbox" name="private" />
-            <button>save</button>
+            <FlexRow>
+              <CheckboxLabel for="private">
+                <PrivCheckbox type="checkbox" name="private" />
+                Private
+              </CheckboxLabel>
+              <Button>save</Button>
+            </FlexRow>
           </form>
         </div>
       ) : (

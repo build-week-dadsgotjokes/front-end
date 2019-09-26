@@ -3,7 +3,7 @@ import axios from "axios";
 import { removePropertiesDeep } from "@babel/types";
 import {
   PageHeader,
-  SaveJoke,
+  Button,
   PrivCheckbox,
   EnterJoke,
   CheckboxLabel
@@ -83,7 +83,7 @@ const AddJoke = props => {
           />
           Private
         </CheckboxLabel>
-        <SaveJoke type="submit">Save</SaveJoke>
+        <Button type="submit">Save</Button>
       </form>
     </div>
   );

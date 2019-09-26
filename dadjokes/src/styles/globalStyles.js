@@ -25,11 +25,13 @@ export const Button = styled.button`
   background: #537d91;
   color: white;
   border-radius: 3px;
-  border: none;
+  border: 1px solid black;
   padding: 5px;
-  margin: 20px auto;
+  margin: 5px
+  font-size: 1rem;
   box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
   transition: 0.1s;
+  filter: brightness(97%);
   &:hover {
     filter: brightness(130%);
   }
@@ -114,6 +116,7 @@ export const PrivCheckbox = styled.input`
   width: 25px;
   cursor: pointer;
   box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+  transition: all 0.1s ease-out;
   &:hover {
     cursor: pointer;
     filter: brightness(60%);
@@ -144,6 +147,7 @@ export const CheckboxLabel = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2px;
 `;
 export const Input = styled.input.attrs(props => ({
   type: props.type,
@@ -154,6 +158,12 @@ export const Input = styled.input.attrs(props => ({
   padding: 5px;
   width: 60%;
   margin: 10px auto;
+`;
+
+export const FlexRow = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
 `;
 
 export const SearchInput = styled(Input)`
@@ -208,14 +218,14 @@ export const TextBtn = styled.p`
   background: #537d91;
   filter: brightness(90%);
   border-radius: 3px;
-  padding: 2px;
+  padding: 5px;
   min-width: 50px;
   border: 1px solid black;
   margin: 0 10px;
   box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
   &:hover {
     cursor: pointer;
-    filter: brightness(105%);
+    filter: brightness(130%);
   }
   &:active {
     transform: translateY(1px);
