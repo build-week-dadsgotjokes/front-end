@@ -42,7 +42,7 @@ const AddJoke = props => {
       )
 
       .then(res => console.log(res))
-      .then(res => (window.location.href = "/jokes"))
+      .then(res => (window.location.href = window.location.href))
       .catch(err => console.log(err));
   };
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { useInput } from "../../hooks/useInput";
 import {
-  Button,
+  SignInButton,
   PageHeader,
   Input,
   SignInDiv,
@@ -88,7 +88,7 @@ const SignUp = props => {
           value={confirm}
         />
 
-        <Button>Submit</Button>
+        <SignInButton>Submit</SignInButton>
       </SignInForm>
     </SignInDiv>
   );

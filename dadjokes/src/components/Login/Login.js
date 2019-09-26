@@ -5,9 +5,9 @@ import styled from "styled-components";
 import { useInput } from "../../hooks/useInput";
 import {
   PageHeader,
-  Button,
   Input,
-  SignInForm
+  SignInForm,
+  SignInButton
 } from "../../styles/globalStyles";
 
 const Login = props => {
@@ -57,7 +57,7 @@ const Login = props => {
           onChange={e => handlePassword(e.target.value)}
           value={password}
         />
-        <Button>Sign in</Button>
+        <SignInButton>Sign in</SignInButton>
       </SignInForm>
     </div>
   );

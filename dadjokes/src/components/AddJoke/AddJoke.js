@@ -48,7 +48,7 @@ const AddJoke = props => {
       .then(() => {
         setSetupValue("");
         setPunchlineValue("");
-        window.location.href = "/jokes";
+        window.location.href = window.location.href;
       });
   };
 
