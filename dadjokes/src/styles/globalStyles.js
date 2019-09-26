@@ -29,6 +29,7 @@ export const Button = styled.button`
   padding: 5px;
   margin: 20px auto;
   box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+  transition: 0.1s;
   &:hover {
     filter: brightness(130%);
   }
@@ -64,6 +65,7 @@ export const NavLink = styled.a`
   filter: brightness(95%);
   &:hover {
     filter: brightness(80%);
+    cursor: pointer;
   }
   transition: 0.1s;
 `;
@@ -174,7 +176,7 @@ export const ProfileJokeContainer = styled.div`
   float: left;
   height: 350px;
   width: 450px;
-  background: #f77754;
+  background: rgba(247, 119, 84, 0.6);
   filter: brightness(85%);
 `;
 
