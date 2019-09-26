@@ -3,12 +3,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useInput } from "../../hooks/useInput";
+import {
+  PageHeader,
+  Button,
+  Input,
+  SignInForm
+} from "../../styles/globalStyles";
 
-const SignInDiv = styled.div`
-  background: #4fb5c8;
-`;
-
-const SignIn = props => {
+const Login = props => {
   const [username, setUsername, handleUsername] = useInput("");
   const [password, setPassword, handlePassword] = useInput("");
 
@@ -35,10 +37,10 @@ const SignIn = props => {
   };
 
   return (
-    <SignInDiv className="signInDiv">
-      <h2>Welcome back</h2>
-      <form onSubmit={e => handleSubmit(e)}>
-        <input
+    <div className="signInDiv">
+      <PageHeader>Welcome back</PageHeader>
+      <SignInForm onSubmit={e => handleSubmit(e)}>
+        <Input
           className="default"
           type="text"
           placeholder="username"
@@ -47,7 +49,7 @@ const SignIn = props => {
           value={username}
         />
 
-        <input
+        <Input
           className="default"
           type="password"
           placeholder="password"
@@ -55,9 +57,9 @@ const SignIn = props => {
           onChange={e => handlePassword(e.target.value)}
           value={password}
         />
-        <button>Sign in</button>
-      </form>
-    </SignInDiv>
+        <Button>Sign in</Button>
+      </SignInForm>
+    </div>
   );
 };
-export default SignIn;
+export default Login;

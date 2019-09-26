@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useInput } from "../../hooks/useInput";
-
-const SignUpDiv = styled.div`
-background: #4FB5C8,
-color: #173947
-`;
-
-const SubButton = styled.button`
-border-radius: 30px,
-color: #173947,
-background: #E56166
-`;
+import {
+  Button,
+  PageHeader,
+  Input,
+  SignInDiv,
+  SignInForm
+} from "../../styles/globalStyles";
 
 const SignUp = props => {
   const [username, setUsername, handleUsername] = useInput("");
@@ -62,10 +58,10 @@ const SignUp = props => {
   };
 
   return (
-    <SignUpDiv className="signUpDiv">
-      <h2>Create new account</h2>
-      <form onSubmit={e => handleSubmit(e)}>
-        <input
+    <SignInDiv className="signUpDiv">
+      <PageHeader>Create new account</PageHeader>
+      <SignInForm onSubmit={e => handleSubmit(e)}>
+        <Input
           className="default"
           type="text"
           placeholder="username"
@@ -74,7 +70,7 @@ const SignUp = props => {
           value={username}
         />
 
-        <input
+        <Input
           className="default"
           type="password"
           placeholder="password"
@@ -83,7 +79,7 @@ const SignUp = props => {
           value={password}
         />
 
-        <input
+        <Input
           className="default"
           type="password"
           placeholder="confirm password"
@@ -92,9 +88,9 @@ const SignUp = props => {
           value={confirm}
         />
 
-        <SubButton>Submit</SubButton>
-      </form>
-    </SignUpDiv>
+        <Button>Submit</Button>
+      </SignInForm>
+    </SignInDiv>
   );
 };
 
