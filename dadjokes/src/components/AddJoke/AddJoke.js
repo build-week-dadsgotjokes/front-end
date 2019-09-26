@@ -69,8 +69,8 @@ const AddJoke = props => {
           value={punchlineValue}
           onChange={handleChange}
         />
-        <PrivCheckbox className="PrivCheckbox" for="private">Private</PrivCheckbox>
-        <input
+        <label for="private">Private</label>
+        <PrivCheckbox
           type="checkbox"
           name="private"
           onChange={e => checkboxChanged(e)}
