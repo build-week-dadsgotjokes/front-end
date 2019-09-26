@@ -94,6 +94,21 @@ export const SaveJoke = styled.button`
   }
 `;
 
+export const PrivCheckbox = styled.label`
+  border: 1px red;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background: #537d91;
+  cursor: pointer;
+  input[type-checkbox] {
+    visibility: hidden;
+  }
+`;
+
 export const SignIn = styled.div`
   width: 40%;
   height: 93vh;

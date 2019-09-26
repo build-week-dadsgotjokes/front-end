@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { removePropertiesDeep } from "@babel/types";
-import { PageHeader, SaveJoke } from "../../styles/globalStyles";
+import { PageHeader, SaveJoke, PrivCheckbox } from "../../styles/globalStyles";
 const AddJoke = props => {
   const [addJoke, setAddJoke] = useState({});
   const [setupValue, setSetupValue] = useState("");
@@ -69,7 +69,7 @@ const AddJoke = props => {
           value={punchlineValue}
           onChange={handleChange}
         />
-        <label for="private">Private</label>
+        <label className="PrivCheckbox" for="private">Private</label>
         <input
           type="checkbox"
           name="private"
