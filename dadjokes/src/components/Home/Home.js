@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Greeting, Button, SignIn } from "../../styles/globalStyles";
 
 const Home = props => {
-  const [newUser, setNewUser] = useState(true);
+  const [newUser, setNewUser] = useState(false);
   const toggleUserStatus = e => {
     e.preventDefault();
     setNewUser(!newUser);

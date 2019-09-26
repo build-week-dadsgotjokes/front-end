@@ -111,6 +111,8 @@ export const CardContainer = styled.div`
   margin: 10px auto;
   padding: 2%;
   border-radius: 10px;
+  background: #537d91;
+  color: white;
 `;
 
 export const CardInfo = styled.div`
@@ -126,6 +128,7 @@ export const ButtonRow = styled.div`
 export const CardContent = styled.p`
   font-size: 1.2rem;
   transition: 0.2s;
+  margin: 0 auto;
 `;
 export const Emphasized = styled.p`
   font-size: 1.2rem;
@@ -133,9 +136,39 @@ export const Emphasized = styled.p`
 `;
 
 export const TextBtn = styled.p`
+  background: #537d91;
+  filter: brightness(90%);
   border-radius: 3px;
   padding: 2px;
   min-width: 50px;
   border: 1px solid black;
   margin: 0 10px;
+  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.3);
+  &:hover {
+    cursor: pointer;
+    filter: brightness(105%);
+  }
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.7);
+  }
+`;
+
+export const Body = styled.div`
+  background: #f77754;
+  min-height: 100vh;
+  overflow: hidden;
+`;
+
+export const ProfileJokeContainer = styled.div`
+  float: left;
+  height: 350px;
+  width: 40%;
+  background: #f77754;
+  filter: brightness(85%);
+`;
+
+export const ScrollJokes = styled.div`
+  height: 320px;
+  overflow: auto;
 `;

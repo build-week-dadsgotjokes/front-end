@@ -6,6 +6,7 @@ import styled from "styled-components";
 import SearchBar from "../NavBar/SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { useInput } from "../../hooks/useInput";
+import { Body } from "../../styles/globalStyles";
 
 const Table = styled.table`
   width: 100%;
@@ -56,7 +57,7 @@ const JokeList = props => {
   };
 
   return (
-    <div>
+    <Body>
       {localStorage.getItem("token") ? (
         userLoggedIn()
       ) : (
@@ -78,7 +79,7 @@ const JokeList = props => {
           />
         );
       })}
-    </div>
+    </Body>
   );
 };
 
