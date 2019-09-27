@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Joke from "../../JokeList/Joke/Joke";
 import AddJoke from "../../AddJoke/AddJoke";
 import { Link } from "react-router-dom";
+import { UserJokeContext } from "../../../contexts/UserJokeContext";
+import { UserContext } from "../../../contexts/UserContext";
 import {
   ProfileJokeContainer,
   ScrollJokes,
@@ -12,47 +14,13 @@ import {
 } from "../../../styles/globalStyles";
 
 const ProfileJokes = () => {
-  const [jokes, setJokes] = useState([]);
-  const [username, setUsername] = useState("");
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios
-      .get(`https://api-dadjokes.herokuapp.com/jokes/auth/mine`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer" + token
-        }
-      })
-      .then(response => {
-        setJokes(response.data);
-      })
-      .catch(error => {
-        console.log("The data was not returned", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios
-      .get(
-        "https://api-dadjokes.herokuapp.com/users/getusername?credentials=%7B%7D&details=%7B%7D&principal=%7B%7D",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer" + token
-          }
-        }
-      )
-      .then(res => setUsername(res.data.username));
-  }, [jokes]);
-
-  console.log(jokes);
+  const [jokes, setJokes] = useContext(UserJokeContext);
+  const [currentUser, setCurrentUser] = useContext(UserContext);
 
   return (
     <ProfileDiv>
       <ProfileInfo>
-        <h2>{`Hello, ${username}`}</h2>
+        <h2>{`Hello, ${currentUser}`}</h2>
         <CardContainer>
           <AddJoke />
         </CardContainer>
@@ -74,7 +42,7 @@ const ProfileJokes = () => {
                   key={joke.id}
                   setup={joke.setup}
                   punchline={joke.punchline}
-                  user={username}
+                  user={currentUser}
                 />
               );
             })

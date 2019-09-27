@@ -37,6 +37,11 @@ export const Button = styled.button`
   }
 `;
 
+export const SignInButton = styled(Button)`
+  width: 50%;
+  margin: 0 auto 20px;
+`;
+
 export const NavContainer = styled.div`
   display: flex;
   width: 100%;
@@ -215,6 +220,9 @@ export const ShowPunch = styled.p`
   font-size: 1rem;
   transition: 0.2s;
   margin: 0 auto;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const CardContent = styled.p`

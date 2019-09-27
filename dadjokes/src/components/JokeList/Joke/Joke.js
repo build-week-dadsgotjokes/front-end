@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Joke.css";
 import axios from "axios";
 import {
@@ -18,6 +18,8 @@ import {
   CardId
 } from "../../../styles/globalStyles";
 
+import useDeleteJoke from "../../../hooks/useDeleteJoke";
+import useEditJoke from "../../../hooks/useEditJoke";
 const AddJoke = props => {
   const [editing, setEditing] = useState(false);
   const [joke, setJoke] = useState({
@@ -27,49 +29,11 @@ const AddJoke = props => {
     isprivate: false
   });
   const [show, setShow] = useState(false);
-
-  const deleteJoke = () => {
-    const token = localStorage.getItem("token");
-    axios
-      .delete(
-        `https://api-dadjokes.herokuapp.com/jokes/auth/delete/${joke.id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token
-          }
-        }
-      )
-
-      .then(res => console.log(res))
-      .then(res => (window.location.href = "/jokes"))
-      .catch(err => console.log(err));
-  };
+  const [jokeid, setJokeid, handleDelete] = useDeleteJoke(joke.id);
+  const [editJoke, setEditJoke, handleEdit] = useEditJoke(joke);
 
   const handleChange = e => {
     setJoke({ ...joke, [e.target.name]: e.target.value });
-  };
-
-  const editJoke = e => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-    axios
-      .put(
-        `https://api-dadjokes.herokuapp.com/jokes/auth/update/${joke.id}`,
-        JSON.stringify({
-          ...joke,
-          setup: joke.setup,
-          punchline: joke.punchline,
-          isprivate: joke.isprivate
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer" + token
-          }
-        }
-      )
-      .catch(err => console.log(err));
   };
 
   return (
@@ -88,7 +52,13 @@ const AddJoke = props => {
       </CardInfo>
       {localStorage.getItem("token") ? (
         <ButtonRow>
-          {!editing ? <TextBtn onClick={deleteJoke}>Delete</TextBtn> : <></>}
+          {!editing ? (
+            <TextBtn onClick={e => handleDelete(e.target.id)} id={joke.id}>
+              Delete
+            </TextBtn>
+          ) : (
+            <></>
+          )}
           <TextBtn onClick={() => setEditing(!editing)}>
             {!editing ? "Edit" : "Cancel"}
           </TextBtn>
@@ -98,7 +68,13 @@ const AddJoke = props => {
       )}
       {editing ? (
         <div>
-          <form onSubmit={editJoke}>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              handleEdit(joke);
+            }}
+            id={joke.id}
+          >
             <Input
               type="text"
               name="setup"
