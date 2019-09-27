@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useInput } from "../../hooks/useInput";
 import { JokeContext } from "../../contexts/JokeContext";
+import { FlagContext, FlagProvider } from "../../contexts/FlagContext";
 import {
   Body,
   AddJokeMain,
@@ -15,7 +16,7 @@ import {
 
 const JokeList = props => {
   const [jokes, setJokes] = useContext(JokeContext);
-  const [flag, setFlag] = useState(false);
+  const [flag, setFlag] = useContext(FlagContext);
   const [input, setInput, handleInput] = useInput("");
   const [display, setDisplay] = useState([]);
 
@@ -46,10 +47,6 @@ const JokeList = props => {
       </AddJokeMain>
     );
   };
-
-  useEffect(() => {
-    setDisplay(jokes);
-  }, []);
 
   useEffect(() => {
     setDisplay(
@@ -83,13 +80,15 @@ const JokeList = props => {
 
       {display.map(joke => {
         return (
-          <Joke
-            id={joke.id}
-            key={joke.id}
-            setup={joke.setup}
-            punchline={joke.punchline}
-            user={joke.owner.username}
-          />
+          <FlagProvider>
+            <Joke
+              id={joke.id}
+              key={joke.id}
+              setup={joke.setup}
+              punchline={joke.punchline}
+              user={joke.owner.username}
+            />
+          </FlagProvider>
         );
       })}
     </Body>

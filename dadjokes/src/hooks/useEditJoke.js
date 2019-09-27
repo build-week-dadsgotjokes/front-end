@@ -25,6 +25,7 @@ const useEditJoke = initialValue => {
           }
         }
       )
+      .then(() => (window.location.href = window.location.href))
       .catch(err => console.log(err));
   };
 

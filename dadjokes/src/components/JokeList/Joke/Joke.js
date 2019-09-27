@@ -20,6 +20,8 @@ import {
 
 import useDeleteJoke from "../../../hooks/useDeleteJoke";
 import useEditJoke from "../../../hooks/useEditJoke";
+import { FlagContext } from "../../../contexts/FlagContext";
+
 const AddJoke = props => {
   const [editing, setEditing] = useState(false);
   const [joke, setJoke] = useState({
@@ -31,10 +33,15 @@ const AddJoke = props => {
   const [show, setShow] = useState(false);
   const [jokeid, setJokeid, handleDelete] = useDeleteJoke(joke.id);
   const [editJoke, setEditJoke, handleEdit] = useEditJoke(joke);
+  const [flag, setFlag] = useContext(FlagContext);
 
   const handleChange = e => {
     setJoke({ ...joke, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    console.log("change made");
+  }, [flag]);
 
   return (
     <CardContainer className="joke">
@@ -53,7 +60,13 @@ const AddJoke = props => {
       {localStorage.getItem("token") ? (
         <ButtonRow>
           {!editing ? (
-            <TextBtn onClick={e => handleDelete(e.target.id)} id={joke.id}>
+            <TextBtn
+              onClick={e => {
+                handleDelete(e.target.id);
+                setFlag(!flag);
+              }}
+              id={joke.id}
+            >
               Delete
             </TextBtn>
           ) : (
@@ -72,6 +85,7 @@ const AddJoke = props => {
             onSubmit={e => {
               e.preventDefault();
               handleEdit(joke);
+              setFlag(!flag);
             }}
             id={joke.id}
           >

@@ -5,6 +5,7 @@ import AddJoke from "../../AddJoke/AddJoke";
 import { Link } from "react-router-dom";
 import { UserJokeContext } from "../../../contexts/UserJokeContext";
 import { UserContext } from "../../../contexts/UserContext";
+import { FlagContext } from "../../../contexts/FlagContext";
 import {
   ProfileJokeContainer,
   ScrollJokes,
@@ -16,6 +17,7 @@ import {
 const ProfileJokes = () => {
   const [jokes, setJokes] = useContext(UserJokeContext);
   const [currentUser, setCurrentUser] = useContext(UserContext);
+  const [flag, setFlag] = useContext(FlagContext);
 
   return (
     <ProfileDiv>
