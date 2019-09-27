@@ -8,24 +8,13 @@ import {
   EnterJoke,
   CheckboxLabel
 } from "../../styles/globalStyles";
-const AddJoke = props => {
-  const [addJoke, setAddJoke] = useState({});
-  const [setupValue, setSetupValue] = useState("");
-  const [punchlineValue, setPunchlineValue] = useState("");
-  const [isprivate, setIsprivate] = useState(false);
 
-  const handleChange = effect => {
-    setAddJoke({
-      ...addJoke,
-      [effect.target.name]: effect.target.value
-    });
-    if (effect.target.name === "setup") {
-      setSetupValue(effect.target.value);
-    }
-    if (effect.target.name === "punchline") {
-      setPunchlineValue(effect.target.value);
-    }
-  };
+import { useInput } from "../../hooks/useInput";
+
+const AddJoke = props => {
+  const [setup, setSetup, setupHandler] = useInput("");
+  const [punchline, setPunchline, punchlineHandler] = useInput("");
+  const [isprivate, setIsprivate] = useState(false);
 
   const SubmitJoke = e => {
     e.preventDefault();
@@ -34,20 +23,20 @@ const AddJoke = props => {
       .post(
         "https://api-dadjokes.herokuapp.com/jokes/auth/create",
         JSON.stringify({
-          setup: setupValue,
-          punchline: punchlineValue,
+          setup: setup,
+          punchline: punchline,
           isprivate: isprivate
         }),
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer" + token
+            Authorization: "Bearer " + token
           }
         }
       )
       .then(() => {
-        setSetupValue("");
-        setPunchlineValue("");
+        setSetup("");
+        setPunchline("");
         window.location.href = window.location.href;
       });
   };
@@ -64,15 +53,15 @@ const AddJoke = props => {
           type="text"
           name="setup"
           placeholder="Setup"
-          value={setupValue}
-          onChange={handleChange}
+          value={setup}
+          onChange={e => setupHandler(e.target.value)}
         />
         <EnterJoke
           type="text"
           name="punchline"
           placeholder="Punchline"
-          value={punchlineValue}
-          onChange={handleChange}
+          value={punchline}
+          onChange={e => punchlineHandler(e.target.value)}
         />
         <CheckboxLabel for="private">
           <PrivCheckbox

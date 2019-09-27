@@ -23,7 +23,6 @@ const JokeList = props => {
     axios
       .get(`https://api-dadjokes.herokuapp.com/jokes/public`)
       .then(response => {
-        console.log("Jokes", response);
         setDisplay(response.data);
       })
       .catch(error => {

@@ -11,8 +11,8 @@ import {
 } from "../../styles/globalStyles";
 
 const Login = props => {
-  const [username, setUsername, handleUsername] = useInput("");
-  const [password, setPassword, handlePassword] = useInput("");
+  const [username, setUsername, handleUsername] = useInput();
+  const [password, setPassword, handlePassword] = useInput();
 
   const handleSubmit = e => {
     e.preventDefault();
